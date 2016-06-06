@@ -8,4 +8,34 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+
+    <style name="MySearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <!--<item name="queryBackground">...</item>  -->
+    <!---->
+        <!--<item name="submitBackground">...</item>  -->
+    <!---->
+        <!--<item name="closeIcon">...</item>  -->
+    <!---->
+        <!--<item name="searchIcon">...</item>  -->
+    <!---->
+        <!--<item name="goIcon">...</item>  -->
+    <!---->
+        <!--<item name="voiceIcon">...</item>  -->
+    <!---->
+        <!--<item name="commitIcon">...</item>  -->
+    <!---->
+        <!--<item name="suggestionRowLayout">...</item>-->
+
+    </style>
 </resources>

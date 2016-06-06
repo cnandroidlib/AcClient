@@ -2,13 +2,19 @@ package thereisnospon.acclient.modules.problem_list;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomSheetBehavior;
+import android.support.design.widget.FloatingActionButton;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import thereisnospon.acclient.R;
 import thereisnospon.acclient.base.adapter.BaseSwipeAdapter;
 import thereisnospon.acclient.base.fragment.BaseSwipeFragment;

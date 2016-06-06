@@ -3,11 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="thereisnospon.acclient.MainActivity">
-
+    tools:context="thereisnospon.acclient.modules.problem_detail.ShowProblemActivity">
 <FrameLayout
     android:id="@+id/fragment_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"></FrameLayout>
-
 </RelativeLayout>

@@ -4,6 +4,8 @@ package thereisnospon.acclient.ui.adapter;
  * Created by yzr on 16/6/5.
  */
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import thereisnospon.acclient.MainActivity;
 import thereisnospon.acclient.R;
 import thereisnospon.acclient.base.adapter.BaseSwipeAdapter;
 import thereisnospon.acclient.data.HdojProblem;
@@ -33,11 +36,15 @@ import butterknife.ButterKnife;
 import thereisnospon.acclient.R;
 import thereisnospon.acclient.base.adapter.BaseSwipeAdapter;
 import thereisnospon.acclient.data.HdojProblem;
+import thereisnospon.acclient.event.Arg;
+import thereisnospon.acclient.modules.problem_detail.ShowProblemActivity;
 
 /**
  * Created by yzr on 16/6/5.
  */
 public class HdojProblemAdapter extends BaseSwipeAdapter<HdojProblem> {
+
+
 
     public HdojProblemAdapter(List<HdojProblem> list) {
         super(list);
@@ -51,12 +58,22 @@ public class HdojProblemAdapter extends BaseSwipeAdapter<HdojProblem> {
     }
 
     @Override
-    public void onBindItemViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindItemViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         VH vh=(VH)holder;
-        HdojProblem problem=getItem(position);
+        final HdojProblem problem=getItem(position);
+        vh.title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               goToProblemDetail(v.getContext(),problem.getId());
+            }
+        });
         vh.title.setText(problem.getTitle());
     }
-
+    private void  goToProblemDetail(Context context,int id){
+        Intent intent=new Intent(context, ShowProblemActivity.class);
+        intent.putExtra(Arg.LOAD_PROBLEM_DETAIL,id);
+        context.startActivity(intent);
+    }
 
     @Override
     public int getFooterLayoutId() {
