@@ -36,7 +36,7 @@ public class  RankItem
     }
 
 
-    public  static  class RankItemBuilder
+    public  static  class Builder
     {
 
         public static List<RankItem> parse(String html){

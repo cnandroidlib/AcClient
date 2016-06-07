@@ -1,12 +1,9 @@
 package thereisnospon.acclient.modules.problem_list;
 
-import android.util.Log;
-
 import java.io.IOException;
 import java.util.List;
 
 import okhttp3.Response;
-import thereisnospon.acclient.AppApplication;
 import thereisnospon.acclient.api.HdojApi;
 import thereisnospon.acclient.data.HdojProblem;
 import thereisnospon.acclient.utils.net.HttpUtil;
@@ -22,7 +19,7 @@ public class HdojProbelemModeImpl implements HdojContact.Model {
     @Override
     public List<HdojProblem> loadPage(int page) {
         String html=getHtml(currentPage);
-        List<HdojProblem>list= HdojProblem.HdojBuilder.buildProblems(html);
+        List<HdojProblem>list= HdojProblem.Builder.buildProblems(html);
         if(list!=null&&list.size()>0){
             this.mloadPge=page;
         }
@@ -33,7 +30,7 @@ public class HdojProbelemModeImpl implements HdojContact.Model {
     @Override
     public List<HdojProblem> loadMore() {
         String html=getHtml(currentPage);
-        List<HdojProblem>list= HdojProblem.HdojBuilder.buildProblems(html);
+        List<HdojProblem>list= HdojProblem.Builder.buildProblems(html);
         if(list!=null&&list.size()>0){
             currentPage++;
         }

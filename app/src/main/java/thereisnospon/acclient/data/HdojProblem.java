@@ -30,7 +30,7 @@ public class HdojProblem
         this.tag=tag;
     }
 
-    public static class  HdojBuilder
+    public static class Builder
     {
 
         public static final String REGEX="p\\((-?\\d+),(-?\\d+),(-?\\d+),\"([\\s\\S]+?)\",(\\d+),(\\d+)";

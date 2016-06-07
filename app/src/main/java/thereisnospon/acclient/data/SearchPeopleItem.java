@@ -31,7 +31,7 @@ public class SearchPeopleItem
         this.accepted = accepted;
     }
 
-    public static class  SearchItemBuilder{
+    public static class Builder {
 
         public static List<SearchPeopleItem> parse(String html){
             Document document= Jsoup.parse(html);
