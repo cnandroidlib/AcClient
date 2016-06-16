@@ -19,14 +19,13 @@ import thereisnospon.acclient.R;
 import thereisnospon.acclient.base.adapter.BaseSwipeAdapter;
 import thereisnospon.acclient.base.fragment.BaseSwipeFragment;
 import thereisnospon.acclient.data.HdojProblem;
+import thereisnospon.acclient.data.ProblemItem;
 import thereisnospon.acclient.ui.adapter.HdojProblemAdapter;
 
 /**
  * Created by yzr on 16/6/5.
  */
 public class HdojProblemFragment extends BaseSwipeFragment<HdojProblem> implements  HdojContact.View{
-
-
 
 
     HdojContact.Presenter presenter;

@@ -20,7 +20,7 @@ import thereisnospon.acclient.base.adapter.BaseSwipeAdapter;
 /**
  * Created by yzr on 16/6/5.
  */
-public  abstract class BaseSwipeFragment<T> extends Fragment implements
+public  abstract class BaseSwipeFragment<T> extends BaseFragment implements
         SwipeRefreshLayout.OnRefreshListener,
         BaseSwipeAdapter.LoadListener{
 
@@ -41,6 +41,11 @@ public  abstract class BaseSwipeFragment<T> extends Fragment implements
 
     public abstract void onLoadMore();
 
+
+    public void clearData(){
+        list.clear();
+    }
+
     public void  starteRefresh(){
         swipeRefreshLayout.setRefreshing(true);
     }
@@ -56,7 +61,6 @@ public  abstract class BaseSwipeFragment<T> extends Fragment implements
         return super.onCreateView(inflater, container, savedInstanceState);
 
     }
-
 
     public final void  init(View parent,
                             @IdRes int swipeRefreshLayoutId,

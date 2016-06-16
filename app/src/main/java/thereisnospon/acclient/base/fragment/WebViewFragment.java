@@ -11,7 +11,7 @@ import android.webkit.WebViewClient;
  */
 
 
-public abstract class WebViewFragment extends Fragment{
+public abstract class WebViewFragment extends BaseFragment{
 
     WebView webView;
 

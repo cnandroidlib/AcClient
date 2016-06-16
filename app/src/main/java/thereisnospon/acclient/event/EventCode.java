@@ -11,4 +11,8 @@ public class EventCode {
 
     public static final int LOGIN_SUCCESS=3;
     public static final int LOGIN_FAILURE=4;
+
+
+    public static final int LOAD_PROBLEM_DETAIL=5;
+
 }

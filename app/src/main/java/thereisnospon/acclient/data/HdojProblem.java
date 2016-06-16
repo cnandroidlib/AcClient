@@ -12,21 +12,15 @@ import java.util.regex.Pattern;
 /**
  * Created by yzr on 16/6/5.
  */
-public class HdojProblem
+public class HdojProblem extends ProblemItem
 {
-    int id;
+
     int solved;
-    String title;
-    int acceptedNum;
-    int submissionNum;
     int tag;
 
     public HdojProblem( int solved,int id,int tag, String title, int acceptedNum, int submissionNum) {
-        this.id = id;
+        super(id,title,acceptedNum,submissionNum);
         this.solved = solved;
-        this.title = title;
-        this.acceptedNum = acceptedNum;
-        this.submissionNum = submissionNum;
         this.tag=tag;
     }
 
@@ -65,40 +59,12 @@ public class HdojProblem
         }
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public int getSolved() {
         return solved;
     }
 
     public void setSolved(int solved) {
         this.solved = solved;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public int getAcceptedNum() {
-        return acceptedNum;
-    }
-
-    public void setAcceptedNum(int acceptedNum) {
-        this.acceptedNum = acceptedNum;
-    }
-
-    public int getSubmissionNum() {
-        return submissionNum;
     }
 
     public int getTag() {
@@ -108,9 +74,4 @@ public class HdojProblem
     public void setTag(int tag) {
         this.tag = tag;
     }
-
-    public void setSubmissionNum(int submissionNum) {
-        this.submissionNum = submissionNum;
-    }
-
 }

@@ -1,5 +1,7 @@
 package thereisnospon.acclient.data;
 
+import android.util.Log;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -11,28 +13,24 @@ import java.util.List;
 /**
  * Created by yzr on 16/6/7.
  */
-public class SearchProblem
+public class SearchProblem extends ProblemItem
 {
-    int id;
-    String title;
+
     String author;
     String source;
-    int accepted;
-    int submission;
 
     public SearchProblem(int id, String title, String author, String source, int accepted, int submission) {
-        this.id = id;
-        this.title = title;
+       super(id,title,accepted,submission);
         this.author = author;
         this.source = source;
-        this.accepted = accepted;
-        this.submission = submission;
     }
 
     public static class Builder{
 
         public static List<SearchProblem> parse(String html){
+            Log.d("SSEARCH","parse");
             Document document= Jsoup.parse(html);
+            Log.d("SSEARCH",html);
             Element tbody=document.getElementsByTag("TBODY").first();
             Elements trs=tbody.getElementsByTag("tr");
             List<SearchProblem>list=new ArrayList<>();
@@ -47,8 +45,8 @@ public class SearchProblem
             }
             return list;
         }
-        private static SearchProblem get(Element tr){
 
+        private static SearchProblem getWithLogin(Element tr){
             Elements tds=tr.getElementsByTag("td");
             int id=Integer.parseInt(tds.get(1).text());
             String title=tds.get(2).text();
@@ -63,22 +61,29 @@ public class SearchProblem
             SearchProblem problem=new SearchProblem(id,title,author,source,accepted,submission);
             return problem;
         }
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
+        private static SearchProblem getWithout(Element tr){
+            Elements tds=tr.getElementsByTag("td");
+            int id=Integer.parseInt(tds.get(0).text());
+            String title=tds.get(1).text();
+            String author=tds.get(2).text();
+            String source=tds.get(3).text();
+            String str=tds.get(4).text();
+            String nums[]=str.split("[\\(\\)/%]");
+            if(nums.length!=4)
+                return null;
+            int accepted=Integer.parseInt(nums[1]);
+            int submission=Integer.parseInt(nums[2]);
+            SearchProblem problem=new SearchProblem(id,title,author,source,accepted,submission);
+            return problem;
+        }
+        private static SearchProblem get(Element tr){
+            Elements tds=tr.getElementsByTag("td");
+            if(tds.size()==5){
+                return getWithout(tr);
+            }else{
+                return getWithLogin(tr);
+            }
+        }
     }
 
     public String getAuthor() {
@@ -96,21 +101,4 @@ public class SearchProblem
     public void setSource(String source) {
         this.source = source;
     }
-
-    public int getAccepted() {
-        return accepted;
-    }
-
-    public void setAccepted(int accepted) {
-        this.accepted = accepted;
-    }
-
-    public int getSubmission() {
-        return submission;
-    }
-
-    public void setSubmission(int submission) {
-        this.submission = submission;
-    }
-
 }

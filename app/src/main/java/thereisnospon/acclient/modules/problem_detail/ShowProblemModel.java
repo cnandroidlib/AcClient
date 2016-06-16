@@ -15,7 +15,6 @@ public class ShowProblemModel implements ShowProblemContact.Model {
 
     @Override
     public String loadProblemDetail(int id) {
-        Log.d("TTAG","x"+id);
         String html=getHtml(id);
         if(html==null)
             return null;
@@ -25,18 +24,15 @@ public class ShowProblemModel implements ShowProblemContact.Model {
     }
 
     private String getHtml(int id){
-        Log.d("TTAG","GET"+id);
         try{
             Response response= HttpUtil.getInstance()
                     .get("http://acm.hdu.edu.cn/showproblem.php")
                     .addParameter("pid",""+id)
                     .execute();
              String html=new String(response.body().bytes(),"gb2312");
-             Log.d("TTAG",html);
             return html;
         }catch (IOException e){
             e.printStackTrace();
-            Log.d("TTAG",e.getMessage());
         }
         return null;
     }

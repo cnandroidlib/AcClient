@@ -1,9 +1,5 @@
 package thereisnospon.acclient.ui.adapter;
 
-/**
- * Created by yzr on 16/6/5.
- */
-
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -16,29 +12,22 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import thereisnospon.acclient.MainActivity;
 import thereisnospon.acclient.R;
 import thereisnospon.acclient.base.adapter.BaseSwipeAdapter;
-import thereisnospon.acclient.data.HdojProblem;
-
-
-
-
 import thereisnospon.acclient.data.ProblemItem;
+import thereisnospon.acclient.data.SearchProblem;
 import thereisnospon.acclient.event.Arg;
 import thereisnospon.acclient.modules.problem_detail.ShowProblemActivity;
 
 /**
- * Created by yzr on 16/6/5.
+ * Created by yzr on 16/6/10.
  */
-public class HdojProblemAdapter extends BaseSwipeAdapter<HdojProblem> {
+public class SearchProblemAdapter extends BaseSwipeAdapter<SearchProblem> {
 
 
-
-    public HdojProblemAdapter(List<HdojProblem > list) {
+    public SearchProblemAdapter(List<SearchProblem> list) {
         super(list);
     }
-
 
     @Override
     public RecyclerView.ViewHolder onCreateItemViewHolder(ViewGroup viewGroup, int viewType) {
@@ -54,12 +43,12 @@ public class HdojProblemAdapter extends BaseSwipeAdapter<HdojProblem> {
         vh.title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               goToProblemDetail(v.getContext(),problem.getId());
+                goToProblemDetail(v.getContext(),problem.getId());
             }
         });
         vh.title.setText(problem.getTitle());
     }
-    private void  goToProblemDetail(Context context,int id){
+    private void  goToProblemDetail(Context context, int id){
         Intent intent=new Intent(context, ShowProblemActivity.class);
         intent.putExtra(Arg.LOAD_PROBLEM_DETAIL,id);
         context.startActivity(intent);
