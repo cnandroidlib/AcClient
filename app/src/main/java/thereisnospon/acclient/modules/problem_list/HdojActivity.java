@@ -28,7 +28,6 @@ import thereisnospon.acclient.utils.InputUtil;
  */
 public class HdojActivity extends SearchActivity {
 
-
     public static final String TAG="HdojActivity";
 
     @Override
@@ -40,13 +39,6 @@ public class HdojActivity extends SearchActivity {
     }
 
 
-    void changeFragment(Fragment fragment){
-       getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fragment_content,fragment)
-                .commit();
-    }
-
     @Override
     public boolean onQueryTextSubmit(String query) {
         Fragment fragment= SearchProblemFragment.newInstance(query);
@@ -54,10 +46,7 @@ public class HdojActivity extends SearchActivity {
         return false;
     }
 
-    @Override
-    public boolean onQueryTextChange(String newText) {
-        return false;
-    }
+
 
 
 }

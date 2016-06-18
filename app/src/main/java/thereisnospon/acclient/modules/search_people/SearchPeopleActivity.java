@@ -22,17 +22,8 @@ public class SearchPeopleActivity extends SearchActivity {
         return false;
     }
 
-    @Override
-    public boolean onQueryTextChange(String newText) {
-        return false;
-    }
 
 
-    private void changeFragment(Fragment fragment){
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fragment_content,fragment)
-                .commit();
-    }
+
 
 }

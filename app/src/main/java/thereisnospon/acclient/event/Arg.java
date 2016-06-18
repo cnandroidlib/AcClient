@@ -5,5 +5,6 @@ package thereisnospon.acclient.event;
  */
 public class Arg {
     public static final String LOAD_PROBLEM_DETAIL="load_pr_de";
+    public static final String LOAD_USER_DETAIL="load_user_detail";
 
 }

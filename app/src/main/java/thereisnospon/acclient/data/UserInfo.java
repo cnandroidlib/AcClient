@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 /**
  * Created by yzr on 16/6/7.
  */
-class UserInfo
+public class UserInfo
 {
 
     String name;

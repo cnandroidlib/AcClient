@@ -9,7 +9,7 @@ import thereisnospon.acclient.R;
 /**
  * Created by yzr on 16/6/6.
  */
-public abstract class SearchActivity extends DrawerActivity implements  SearchView.OnQueryTextListener {
+public abstract class SearchActivity extends FragmentActivity implements  SearchView.OnQueryTextListener {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -20,4 +20,8 @@ public abstract class SearchActivity extends DrawerActivity implements  SearchVi
         return ret;
     }
 
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        return false;
+    }
 }
