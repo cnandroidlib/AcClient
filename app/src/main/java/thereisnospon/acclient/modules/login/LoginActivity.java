@@ -69,6 +69,7 @@ public class LoginActivity extends AppCompatActivity  {
 
     public void onLoginSuccess(Event<String> event){
         msg.setText(event.getData());
+        LoginUtil.testGet();
     }
 
     public void onLoginFailure(Event<String> event){

@@ -20,18 +20,20 @@
         <activity android:name=".MainActivity" />
         <activity
             android:name=".modules.login.LoginActivity"
-            android:label="@string/title_activity_login" />
+            android:label="@string/title_activity_login" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".modules.problem_list.HdojActivity"
             android:label="题目列表"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".modules.problem_detail.ShowProblemActivity" />
         <activity android:name=".modules.search_people.SearchPeopleActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".modules.user_detail.UserDetailActivity"></activity>
     </application>

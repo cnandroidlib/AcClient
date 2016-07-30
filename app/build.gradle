@@ -19,6 +19,12 @@ android {
     }
 }
 
+
+repositories {
+    maven {
+        url  "http://dl.bintray.com/thereisnospon/maven"
+    }
+}
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
@@ -42,6 +48,7 @@ dependencies {
     compile 'com.squareup.okhttp:okhttp:2.4.0'
 
 
+    compile(group: 'thereisnospon.codeview', name: 'codeview', version: '0.3.0', ext: 'aar', classifier: '')
     compile 'org.jsoup:jsoup:1.9.2'
 
 
