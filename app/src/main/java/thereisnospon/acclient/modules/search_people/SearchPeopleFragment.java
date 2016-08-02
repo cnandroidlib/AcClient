@@ -32,6 +32,8 @@ public class SearchPeopleFragment extends BaseSwipeFragment<SearchPeopleItem>
         fragment.key=key;
         return fragment;
     }
+
+
     @Override
     public void refreshPeople(List<SearchPeopleItem> list) {
         clearData();

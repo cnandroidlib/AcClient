@@ -10,7 +10,9 @@ import okhttp3.Response;
 import thereisnospon.acclient.api.HdojApi;
 import thereisnospon.acclient.data.SearchPeopleItem;
 import thereisnospon.acclient.data.SearchProblem;
+import thereisnospon.acclient.data.SubmmitStatus;
 import thereisnospon.acclient.modules.problem_list.search_list.SearchProblemContact;
+import thereisnospon.acclient.modules.submmit_status.SubmmitQuery;
 import thereisnospon.acclient.utils.net.HttpUtil;
 import thereisnospon.acclient.utils.net.request.IRequest;
 
@@ -84,5 +86,9 @@ public class SearchPeopleModel implements SearchPeopleContact.Model {
         }
         return null;
     }
+
+
+
+
 
 }

@@ -10,7 +10,8 @@ import thereisnospon.acclient.data.SubmmitStatus;
 public interface SubmmitStatusContact {
 
     interface  View{
-        void onSuccess(List<SubmmitStatus> statusList);
+        void onMoreStatus(List<SubmmitStatus>statusList);
+        void onRefreshStatus(List<SubmmitStatus>statusList);
         void onFailure(String err);
     }
 

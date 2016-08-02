@@ -15,7 +15,6 @@ public class SubmmitQuery {
         this.status=status;
     }
 
-
     @Override
     public String toString() {
         return query();
@@ -24,14 +23,14 @@ public class SubmmitQuery {
     public String query(){
         StringBuilder builder=new StringBuilder();
         if(user!=null)
-            builder.append("use="+user);
+            builder.append("&user="+user);
         if(status!=null)
-            builder.append("status="+status.value);
+            builder.append("&status="+status.value);
         return builder.toString();
     }
 
     public enum Status{
-        AC("accept"),ALL("#status");
+        AC("5"),ALL("#status");
         private String value;
         public String getValue(){
             return value;
@@ -40,6 +39,7 @@ public class SubmmitQuery {
             value=val;
         }
     }
+
 
 
 }

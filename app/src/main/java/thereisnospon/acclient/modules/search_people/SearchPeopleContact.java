@@ -8,7 +8,7 @@ import thereisnospon.acclient.data.SearchPeopleItem;
  * Created by yzr on 16/6/16.
  */
 public interface SearchPeopleContact {
-
+    
     interface View{
         void refreshPeople(List<SearchPeopleItem>list);
         void loadMorePeople(List<SearchPeopleItem>list);

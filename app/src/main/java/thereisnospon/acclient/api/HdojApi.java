@@ -15,5 +15,6 @@ public class HdojApi {
 
     public static final String USER_INFO="http://acm.hdu.edu.cn/userstatus.php";
 
-    public static final String JUDGE_STATUS="http://acm.hdu.edu.cn/status.php";
+    public static final String JUDGE_STATUS="http://acm.hdu.edu.cn/status.php?";
+
 }

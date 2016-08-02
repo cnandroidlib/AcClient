@@ -1,5 +1,7 @@
 package thereisnospon.acclient.modules.submmit_status;
 
+import com.orhanobut.logger.Logger;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -16,35 +18,40 @@ import thereisnospon.acclient.utils.net.request.IRequest;
 public class SummitStatusModel implements SubmmitStatusContact.Model {
 
 
+    QueryManager manager;
 
+    public SummitStatusModel(){
+        manager=new QueryManager();
+    }
 
     @Override
     public List<SubmmitStatus> loadStatus(SubmmitQuery query) {
-        return null;
+        String q=manager.load(query);
+        Logger.d(q);
+        return  getList(q);
     }
 
     @Override
     public List<SubmmitStatus> moreStatus(SubmmitQuery query) {
-        return null;
+       String q=manager.more(query);
+        Logger.d(q);
+        return getList(q);
     }
 
-    private IRequest buildRequest(String first, String user, String status){
-        IRequest request= HttpUtil.getInstance()
-                .get(HdojApi.JUDGE_STATUS);
-        if(first!=null){
-            request.addParameter("first",first);
-        }
-        if(user!=null){
-            request.addParameter("user",user);
-        }
-        if(status!=null){
-            request.addParameter("status",status);
-        }
-        return request;
+    private IRequest buildRequest(String  query){
+        IRequest reques=HttpUtil.getInstance()
+                .get(query);
+      return reques;
     }
 
-    private String getHtml(String first,String user,String status){
-        IRequest request=buildRequest(first,user,status);
+    List<SubmmitStatus>getList(String query){
+        String html=getHtml(query);
+        List<SubmmitStatus>list=SubmmitStatus.Builder.parse(html);
+        return manager.map(list);
+    }
+
+    private String getHtml(String query){
+        IRequest request=buildRequest(query);
         try{
             Response response=request.execute();
             String html=new String(response.body().bytes(),"gb2312");

@@ -37,10 +37,15 @@ public class SubmmitStatusAdapter extends NormalSwipeAdapter<SubmmitStatus> {
         SubmmitStatus status=getItem(position);
         ItemViewHolder vh=(ItemViewHolder)holder;
         vh.judge.setText(status.getStatus());
+        vh.author.setText(status.getUserName());
+        vh.id.setText(status.getSubmmitId());
+
     }
 
     public static class ItemViewHolder extends RecyclerView.ViewHolder{
         @BindView(R.id.status_judge)TextView judge;
+        @BindView(R.id.status_author)TextView author;
+        @BindView(R.id.status_id)TextView id;
         public ItemViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
