@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:fitsSystemWindows="true"
-    tools:context="thereisnospon.acclient.NavActivity">
+    android:id="@+id/activity_problem_coor"
+    android:fitsSystemWindows="true">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -24,9 +23,44 @@
     </android.support.design.widget.AppBarLayout>
 
     <FrameLayout
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:id="@+id/fragment_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></FrameLayout>
 
 
-</LinearLayout>
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:id="@+id/problem_bottomsheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:behavior_hideable="true"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+        <NumberPicker
+            android:background="#ffffff"
+            android:id="@+id/problem_pager_np"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></NumberPicker>
+
+        <Button
+            android:id="@+id/problem_pager_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/problem_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@android:drawable/ic_dialog_email" />
+
+
+</android.support.design.widget.CoordinatorLayout>

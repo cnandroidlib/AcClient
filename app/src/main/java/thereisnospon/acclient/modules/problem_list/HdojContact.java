@@ -11,6 +11,7 @@ import thereisnospon.acclient.data.HdojProblem;
 public interface HdojContact {
 
     public interface View{
+        void onMoreProblem(List<HdojProblem>list);
         public void  onSuccess(List<HdojProblem> list);
         public void  onFailure(String msg);
     }

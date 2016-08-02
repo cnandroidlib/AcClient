@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.orhanobut.logger.Logger;
+
 import java.util.List;
 
 import butterknife.BindView;
@@ -30,9 +32,19 @@ public class HdojProblemFragment extends BaseSwipeFragment<HdojProblem> implemen
 
     HdojContact.Presenter presenter;
 
+    int page=-1;
+
+    public static  HdojProblemFragment newInstance(int page){
+         HdojProblemFragment fragment=new HdojProblemFragment();
+        fragment.page=page;
+        return fragment;
+    }
+
     @Override
     public void onLoadMore() {
-        presenter.loadMore();
+        if(page==-1)
+            presenter.loadMore();
+        else presenter.loadPage(page);
     }
 
     @Nullable
@@ -41,6 +53,8 @@ public class HdojProblemFragment extends BaseSwipeFragment<HdojProblem> implemen
         View view=inflater.inflate(R.layout.fragment_problem_list,container,false);
         init(view, R.id.problem_list_swipe,R.id.problem_list_recycle);
         presenter=new HdojPresenterImpl(this);
+        presenter.loadPage(page);
+        Logger.d("create view");
         return view;
     }
 
@@ -51,21 +65,29 @@ public class HdojProblemFragment extends BaseSwipeFragment<HdojProblem> implemen
 
     @Override
     public boolean hasMore() {
-        return true;
+        return page==-1;
     }
 
     @Override
     public void onRefresh() {
-        presenter.refresh();
+        if(page==-1)
+         presenter.refresh();
+        else presenter.loadPage(page);
     }
 
     @Override
     public void onSuccess(List<HdojProblem> list) {
+        clearData();
         onMore(list);
     }
 
     @Override
     public void onFailure(String msg) {
 
+    }
+
+    @Override
+    public void onMoreProblem(List<HdojProblem> list) {
+        onMore(list);
     }
 }

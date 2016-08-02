@@ -2,6 +2,8 @@ package thereisnospon.acclient.data;
 
 import android.util.Log;
 
+import com.orhanobut.logger.Logger;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -32,6 +34,7 @@ public class SearchProblem extends ProblemItem
             Document document= Jsoup.parse(html);
             Log.d("SSEARCH",html);
             Element tbody=document.getElementsByTag("TBODY").first();
+
             Elements trs=tbody.getElementsByTag("tr");
             List<SearchProblem>list=new ArrayList<>();
             for(int i=0;i<trs.size();i++){
@@ -79,8 +82,10 @@ public class SearchProblem extends ProblemItem
         private static SearchProblem get(Element tr){
             Elements tds=tr.getElementsByTag("td");
             if(tds.size()==5){
+                Logger.d("out");
                 return getWithout(tr);
             }else{
+                Logger.d("login");
                 return getWithLogin(tr);
             }
         }

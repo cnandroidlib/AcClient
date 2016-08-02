@@ -20,18 +20,18 @@
         <activity android:name=".MainActivity" />
         <activity
             android:name=".modules.login.LoginActivity"
-            android:label="@string/title_activity_login">
-
-        </activity>
+            android:label="@string/title_activity_login"></activity>
         <activity
             android:name=".modules.problem_list.HdojActivity"
             android:label="题目列表"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".modules.problem_detail.ShowProblemActivity" />
-        <activity android:name=".modules.search_people.SearchPeopleActivity"></activity>
+        <activity android:name=".modules.search_people.SearchPeopleActivity" />
         <activity android:name=".modules.user_detail.UserDetailActivity" />
         <activity android:name=".modules.submmit_status.SubmmitStatusActivity">
 
+        </activity>
+        <activity android:name=".DebugActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -15,4 +15,6 @@ public class EventCode {
 
     public static final int LOAD_PROBLEM_DETAIL=5;
 
+    public static final int RECYCLE_SCROLLED=6;
+
 }

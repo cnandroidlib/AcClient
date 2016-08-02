@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -98,6 +100,16 @@ public  abstract class BaseSwipeFragment<T> extends BaseFragment implements
     public abstract BaseSwipeAdapter<T>  createAdapter(List<T>list);
 
 
+
+    public void  onRecycleViewScroll(int dx, int dy){
+
+    }
+    public void  listenScorll(boolean li){
+        mListernScorll=li;
+    }
+
+    boolean mListernScorll=false;
+
     public class EndlessRecycleOnScrollListener extends  RecyclerView.OnScrollListener{
         private int previousTotal=0;
         private boolean loading=true;
@@ -116,6 +128,7 @@ public  abstract class BaseSwipeFragment<T> extends BaseFragment implements
             visibleItemCount=recyclerView.getChildCount();
             totalItemCount=linearLayoutManager.getItemCount();
             firstVisibleItem=linearLayoutManager.findFirstVisibleItemPosition();
+            onRecycleViewScroll(dx,dy);
             if(loading){
                 if(totalItemCount>previousTotal){
                     loading=false;

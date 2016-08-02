@@ -3,6 +3,8 @@ package thereisnospon.acclient.modules.problem_list.search_list;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.orhanobut.logger.Logger;
+
 import org.jsoup.helper.StringUtil;
 
 import java.io.IOException;
@@ -65,6 +67,7 @@ public class SearchProblemModel implements SearchProblemContact.Model {
         Log.d(TAG, "quer"+query);
         Log.d(TAG, "queryProblem: "+html);
         List<SearchProblem>list=SearchProblem.Builder.parse(html);
+        Logger.d("size:"+list.size());
         if(list!=null){
             reset(query,list);
             return getMore();
@@ -85,7 +88,8 @@ public class SearchProblemModel implements SearchProblemContact.Model {
         }
     }
 
-    private String getHtml(String query){
+
+    String postPage(String query){
         try{
             String urlQuery=URLEncoder.encode(query,"gb2312");
             Log.e("SSEARCH",urlQuery);
@@ -101,5 +105,31 @@ public class SearchProblemModel implements SearchProblemContact.Model {
             e.printStackTrace();
         }
         return "";
+    }
+
+
+    String getPage(String query){
+        try{
+            String urlQuery=URLEncoder.encode(query,"gb2312");
+            IRequest request=HttpUtil.getInstance()
+                    .get(HdojApi.PROBLEM_LIST+query);
+            Response response= request
+                    .execute();
+            Logger.d(HdojApi.PROBLEM_LIST+query);
+            String html=  new String(response.body().bytes(),"gb2312");
+            return html;
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+
+    private String getHtml(String query){
+        if(query.contains("?vol=")){
+            return getPage(query);
+        }else{
+            return postPage(query);
+        }
     }
 }

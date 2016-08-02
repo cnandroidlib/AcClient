@@ -1,5 +1,7 @@
 package thereisnospon.acclient.modules.problem_list;
 
+import com.orhanobut.logger.Logger;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -16,11 +18,14 @@ public class HdojProbelemModeImpl implements HdojContact.Model {
     int currentPage=1;
     int mloadPge=-1;
 
+
     @Override
     public List<HdojProblem> loadPage(int page) {
-        String html=getHtml(currentPage);
+        String html=getHtml(page);
         List<HdojProblem>list= HdojProblem.Builder.buildProblems(html);
+        Logger.d("loadpagesize"+list.size());
         if(list!=null&&list.size()>0){
+
             this.mloadPge=page;
         }
         return list;
@@ -29,6 +34,8 @@ public class HdojProbelemModeImpl implements HdojContact.Model {
 
     @Override
     public List<HdojProblem> loadMore() {
+        if(mloadPge!=-1)
+            return null;
         String html=getHtml(currentPage);
         List<HdojProblem>list= HdojProblem.Builder.buildProblems(html);
         if(list!=null&&list.size()>0){

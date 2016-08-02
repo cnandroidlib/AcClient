@@ -2,6 +2,8 @@ package thereisnospon.acclient.modules.problem_list;
 
 import android.util.Log;
 
+import com.orhanobut.logger.Logger;
+
 import java.util.List;
 
 import rx.Observable;
@@ -25,13 +27,15 @@ public class HdojPresenterImpl implements HdojContact.Presenter {
     }
 
     @Override
-    public void loadPage(int page) {
-        Observable.just(1)
+    public void loadPage(final int page) {
+
+        Logger.d("lpage"+page);
+        Observable.just(page)
                 .observeOn(Schedulers.io())
                 .map(new Func1<Object, List<HdojProblem>>() {
                     @Override
                     public List<HdojProblem> call(Object object) {
-                        return model.loadMore();
+                        return model.loadPage(page);
                     }
                 })
                 .observeOn(AndroidSchedulers.mainThread())
@@ -70,7 +74,7 @@ public class HdojPresenterImpl implements HdojContact.Presenter {
                     @Override
                     public void call(List<HdojProblem> hdojProblems) {
                         if(hdojProblems!=null&&hdojProblems.size()>0){
-                            view.onSuccess(hdojProblems);
+                            view.onMoreProblem(hdojProblems);
                         }else{
                             view.onFailure("获取失败");
                         }

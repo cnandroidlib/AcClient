@@ -14,8 +14,10 @@ import thereisnospon.acclient.base.adapter.BaseSwipeAdapter;
 import thereisnospon.acclient.base.fragment.BaseFragment;
 import thereisnospon.acclient.base.fragment.BaseSwipeFragment;
 import thereisnospon.acclient.data.HdojProblem;
+import thereisnospon.acclient.data.SearchPeopleItem;
 import thereisnospon.acclient.data.SearchProblem;
 import thereisnospon.acclient.modules.problem_list.HdojPresenterImpl;
+import thereisnospon.acclient.modules.search_people.SearchPeopleFragment;
 import thereisnospon.acclient.ui.adapter.HdojProblemAdapter;
 import thereisnospon.acclient.ui.adapter.SearchProblemAdapter;
 
@@ -36,6 +38,8 @@ public class SearchProblemFragment extends BaseSwipeFragment<SearchProblem>
         fragment.query=query;
         return fragment;
     }
+
+
 
     @Override
     public void onLoadMore() {

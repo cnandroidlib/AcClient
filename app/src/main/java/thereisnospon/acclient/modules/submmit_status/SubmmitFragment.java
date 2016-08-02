@@ -76,8 +76,6 @@ implements  SubmmitStatusContact.View{
     public void onMoreStatus(List<SubmmitStatus> statusList) {
         onMore(statusList);
         refreshing=false;
-        if(debug++<3)
-            onLoadMore();
         Logger.d(statusList.size());
 
     }
