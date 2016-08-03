@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="code_theme_names">
+        <item>Android Studio</item>
+        <item>Sublime</item>
+        <item>Idea</item>
+    </array>
+
+    <array name="code_theme_values">
+        <item>Android Studio</item>
+        <item>Sublime</item>
+        <item>Idea</item>
+    </array>
+
+    <array name="test_names">
+        <item>c</item>
+        <item>java</item>
+        <item>c++</item>
+    </array>
+
+    <array name="test_values">
+        <item>c</item>
+        <item>java</item>
+        <item>c++</item>
+    </array>
+
+
+</resources>

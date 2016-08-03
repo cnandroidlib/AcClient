@@ -20,7 +20,7 @@
         <activity android:name=".MainActivity" />
         <activity
             android:name=".modules.login.LoginActivity"
-            android:label="@string/title_activity_login"></activity>
+            android:label="@string/title_activity_login" />
         <activity
             android:name=".modules.problem_list.HdojActivity"
             android:label="题目列表"
@@ -28,9 +28,7 @@
         <activity android:name=".modules.problem_detail.ShowProblemActivity" />
         <activity android:name=".modules.search_people.SearchPeopleActivity" />
         <activity android:name=".modules.user_detail.UserDetailActivity" />
-        <activity android:name=".modules.submmit_status.SubmmitStatusActivity">
-
-        </activity>
+        <activity android:name=".modules.submmit_status.SubmmitStatusActivity" />
         <activity android:name=".DebugActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,6 +36,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".modules.show_code.CodeActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".modules.settings.SettingActivity"></activity>
     </application>
 
 </manifest>

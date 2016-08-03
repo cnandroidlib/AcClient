@@ -54,10 +54,13 @@ public class HdojProblemAdapter extends BaseSwipeAdapter<HdojProblem> {
         vh.title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               goToProblemDetail(v.getContext(),problem.getId());
+                goToProblemDetail(v.getContext(),problem.getId());
             }
         });
         vh.title.setText(problem.getTitle());
+        vh.id.setText(problem.getId()+"");
+        vh.ac.setText(problem.getAccepted()+"");
+        vh.submmit.setText(problem.getSubmmision()+"");
     }
     private void  goToProblemDetail(Context context,int id){
         Intent intent=new Intent(context, ShowProblemActivity.class);
@@ -78,6 +81,9 @@ public class HdojProblemAdapter extends BaseSwipeAdapter<HdojProblem> {
     public class VH extends RecyclerView.ViewHolder{
 
         @BindView(R.id.problem_title)TextView title;
+        @BindView(R.id.problem_ac)TextView ac;
+        @BindView(R.id.problem_submmit)TextView submmit;
+        @BindView(R.id.problem_id)TextView id;
         public VH(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);

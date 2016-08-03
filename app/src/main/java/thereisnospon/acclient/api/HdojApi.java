@@ -17,4 +17,5 @@ public class HdojApi {
 
     public static final String JUDGE_STATUS="http://acm.hdu.edu.cn/status.php?";
 
+    public static final String VIEW_CODE="http://acm.hdu.edu.cn/viewcode.php?rid=";
 }

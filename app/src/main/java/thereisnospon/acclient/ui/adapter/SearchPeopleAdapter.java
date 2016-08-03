@@ -39,6 +39,7 @@ public class SearchPeopleAdapter extends NormalSwipeAdapter<SearchPeopleItem> {
         final SearchPeopleItem people=getItem(position);
         ItemViewHolder vh=(ItemViewHolder)holder;
         vh.nickName.setText(people.getName());
+        vh.acNum.setText(people.getAccepted()+"");
         vh.nickName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,9 +56,11 @@ public class SearchPeopleAdapter extends NormalSwipeAdapter<SearchPeopleItem> {
 
     private  class ItemViewHolder extends RecyclerView.ViewHolder{
         TextView nickName;
+        TextView acNum;
         public ItemViewHolder(View itemView) {
             super(itemView);
             nickName=(TextView)itemView.findViewById(R.id.search_people_nickname);
+            acNum=(TextView)itemView.findViewById(R.id.search_people_ac);
         }
     }
 

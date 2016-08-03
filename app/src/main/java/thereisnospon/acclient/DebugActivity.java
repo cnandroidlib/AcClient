@@ -7,13 +7,18 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import thereisnospon.acclient.modules.login.LoginActivity;
+import thereisnospon.acclient.modules.login.LoginUtil;
 import thereisnospon.acclient.modules.problem_list.HdojActivity;
 import thereisnospon.acclient.modules.search_people.SearchPeopleActivity;
+import thereisnospon.acclient.modules.settings.SettingActivity;
+import thereisnospon.acclient.modules.show_code.CodeActivity;
+import thereisnospon.acclient.modules.show_code.CodeFragment;
 import thereisnospon.acclient.modules.submmit_status.SubmmitStatusActivity;
 
 public class DebugActivity extends AppCompatActivity implements ListView.OnItemClickListener{
@@ -23,7 +28,7 @@ public class DebugActivity extends AppCompatActivity implements ListView.OnItemC
     ListView listView;
     ArrayAdapter<String>adapter;
     String []debugs=new String[]{
-            "Login","problem","search","submmit"
+            "Login","problem","search","submmit","Code","Setting"
     };
 
     @Override
@@ -38,6 +43,10 @@ public class DebugActivity extends AppCompatActivity implements ListView.OnItemC
                 break;
             case 3:cl= SubmmitStatusActivity.class;
                 break;
+            case 4:cl= CodeActivity.class;
+                break;
+            case 5:cl= SettingActivity.class;
+                break;
             default:
                 break;
         }
@@ -50,6 +59,12 @@ public class DebugActivity extends AppCompatActivity implements ListView.OnItemC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_debug);
         initList();
+        if(LoginUtil.cheackCookie()){
+            Toast.makeText(this,"登陆成功",Toast.LENGTH_SHORT).show();
+
+        }else{
+            Toast.makeText(this,"验证超时",Toast.LENGTH_SHORT).show();
+        }
     }
 
     void initList(){
