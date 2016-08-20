@@ -2,24 +2,34 @@ package thereisnospon.acclient.base.adapter;
 
 import java.util.List;
 
-import thereisnospon.acclient.R;
+import thereisnospon.acclient.base.adapter.BaseSwipeAdapter;
 
 /**
- * Created by yzr on 16/6/16.
+ * Created by yzr on 16/8/20.
  */
 public abstract class NormalSwipeAdapter<T> extends BaseSwipeAdapter<T> {
 
+
+    List<T>mDataList;
+
     public NormalSwipeAdapter(List<T> list) {
-        super(list);
+        this.mDataList = list;
     }
+
+    public static final int ITEM_TYPE=1;
+
     @Override
-    public int getFooterLayoutId() {
-        return R.layout.item_footer;
+    public int getNormalItemViewType(int position) {
+        return ITEM_TYPE;
+    }
+
+    public T getItem(int position){
+        return mDataList.get(position);
     }
 
     @Override
-    public int getProgressBarId() {
-        return R.id.progress_bar;
+    public int getNormalItemCount() {
+        return mDataList==null?0:mDataList.size();
     }
 
 }

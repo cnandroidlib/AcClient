@@ -13,16 +13,16 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import thereisnospon.acclient.R;
-import thereisnospon.acclient.base.adapter.BaseSwipeAdapter;
+import thereisnospon.acclient.base.adapter.NormalSwipeAdapter;
 import thereisnospon.acclient.data.ProblemItem;
 import thereisnospon.acclient.data.SearchProblem;
 import thereisnospon.acclient.event.Arg;
 import thereisnospon.acclient.modules.problem_detail.ShowProblemActivity;
 
 /**
- * Created by yzr on 16/6/10.
+ * Created by yzr on 16/8/20.
  */
-public class SearchProblemAdapter extends BaseSwipeAdapter<SearchProblem> {
+public class SearchProblemAdapter extends NormalSwipeAdapter<SearchProblem> {
 
 
     public SearchProblemAdapter(List<SearchProblem> list) {
@@ -30,15 +30,15 @@ public class SearchProblemAdapter extends BaseSwipeAdapter<SearchProblem> {
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateItemViewHolder(ViewGroup viewGroup, int viewType) {
-        View view= LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.item_list_problem,viewGroup,false);
+    public RecyclerView.ViewHolder createNormalViewHolder(ViewGroup parent, int viewType) {
+        View view= LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_list_problem,parent,false);
         return new VH(view);
     }
 
     @Override
-    public void onBindItemViewHolder(final RecyclerView.ViewHolder holder, final int position) {
-        VH vh=(VH)holder;
+    public void bindNormalViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
+        VH vh=(VH)viewHolder;
         final ProblemItem problem=getItem(position);
         vh.title.getPaint().setFakeBoldText(true);
         vh.title.setOnClickListener(new View.OnClickListener() {
@@ -52,20 +52,12 @@ public class SearchProblemAdapter extends BaseSwipeAdapter<SearchProblem> {
         vh.ac.setText(problem.getAccepted()+"");
         vh.submmit.setText(problem.getSubmmision()+"");
     }
+
+
     private void  goToProblemDetail(Context context, int id){
         Intent intent=new Intent(context, ShowProblemActivity.class);
         intent.putExtra(Arg.LOAD_PROBLEM_DETAIL,id);
         context.startActivity(intent);
-    }
-
-    @Override
-    public int getFooterLayoutId() {
-        return R.layout.item_footer;
-    }
-
-    @Override
-    public int getProgressBarId() {
-        return R.id.progress_bar;
     }
 
     public class VH extends RecyclerView.ViewHolder{

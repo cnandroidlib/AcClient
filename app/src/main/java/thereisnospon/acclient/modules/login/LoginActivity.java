@@ -1,11 +1,10 @@
 package thereisnospon.acclient.modules.login;
 
-import android.support.v7.app.AppCompatActivity;
-
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -20,23 +19,23 @@ import thereisnospon.acclient.event.EventCode;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity  {
+public class LoginActivity extends AppCompatActivity {
 
-    @BindView(R.id.login_userName)EditText userNameEdit;
-    @BindView(R.id.login_password)EditText passwordEdit;
-    @BindView(R.id.login_loginButton)Button loginButon;
-    @BindView(R.id.login_get)Button getButton;
-    @BindView(R.id.login_content)TextView  msg;
 
-    @OnClick(R.id.login_loginButton)public void login(){
-        String userName=userNameEdit.getText().toString();
-        String password=passwordEdit.getText().toString();
+    @BindView(R.id.login_username)
+    TextInputEditText loginUsername;
+    @BindView(R.id.loging_password)
+    TextInputEditText logingPassword;
+    @BindView(R.id.login_loginbtn)
+    Button loginLoginbtn;
+
+    @OnClick(R.id.login_loginbtn)
+    public void onClick() {
+        String userName=loginUsername.getText().toString();
+        String password=logingPassword.getText().toString();
         LoginUtil.login(userName,password);
     }
 
-    @OnClick(R.id.login_get)public void get(){
-        LoginUtil.testGet();
-    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,9 +46,8 @@ public class LoginActivity extends AppCompatActivity  {
 
 
     @Subscribe
-    public void onNewEvent(Event<String> event){
-        switch (event.getEventCode())
-        {
+    public void onNewEvent(Event<String> event) {
+        switch (event.getEventCode()) {
             case EventCode.LOGIN_SUCCESS:
                 onLoginSuccess(event);
                 break;
@@ -67,22 +65,23 @@ public class LoginActivity extends AppCompatActivity  {
         }
     }
 
-    public void onLoginSuccess(Event<String> event){
-        msg.setText(event.getData());
+    public void onLoginSuccess(Event<String> event) {
         LoginUtil.testGet();
+        Toast.makeText(this, "login success", Toast.LENGTH_SHORT).show();
     }
 
-    public void onLoginFailure(Event<String> event){
-        msg.setText(event.getData());
+    public void onLoginFailure(Event<String> event) {
+
     }
 
-    public void onGetSuccess(Event<String>event){
-        msg.setText(event.getData());
+    public void onGetSuccess(Event<String> event) {
+
     }
 
-    public void onGetFailure(Event<String>event){
-        msg.setText(event.getData());
+    public void onGetFailure(Event<String> event) {
+
     }
+
 
 }
 

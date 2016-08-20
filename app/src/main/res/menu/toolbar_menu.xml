@@ -7,7 +7,7 @@
         android:orderInCategory="80"
         android:title="action_search"
         app:actionViewClass="android.support.v7.widget.SearchView"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="always"/>
 
 
 </menu>

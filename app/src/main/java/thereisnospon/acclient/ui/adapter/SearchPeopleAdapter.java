@@ -6,20 +6,18 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.TextView;
 
 import java.util.List;
 
 import thereisnospon.acclient.R;
-import thereisnospon.acclient.base.adapter.BaseSwipeAdapter;
 import thereisnospon.acclient.base.adapter.NormalSwipeAdapter;
 import thereisnospon.acclient.data.SearchPeopleItem;
 import thereisnospon.acclient.event.Arg;
 import thereisnospon.acclient.modules.user_detail.UserDetailActivity;
 
 /**
- * Created by yzr on 16/6/16.
+ * Created by yzr on 16/8/20.
  */
 public class SearchPeopleAdapter extends NormalSwipeAdapter<SearchPeopleItem> {
 
@@ -28,16 +26,16 @@ public class SearchPeopleAdapter extends NormalSwipeAdapter<SearchPeopleItem> {
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateItemViewHolder(ViewGroup viewGroup, int viewType) {
-        View view= LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.item_search_people,viewGroup,false);
+    public RecyclerView.ViewHolder createNormalViewHolder(ViewGroup parent, int viewType) {
+        View view= LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_search_people,parent,false);
         return new ItemViewHolder(view);
     }
 
     @Override
-    public void onBindItemViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void bindNormalViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
         final SearchPeopleItem people=getItem(position);
-        ItemViewHolder vh=(ItemViewHolder)holder;
+        ItemViewHolder vh=(ItemViewHolder)viewHolder;
         vh.nickName.setText(people.getName());
         vh.acNum.setText(people.getAccepted()+"");
         vh.nickName.setOnClickListener(new View.OnClickListener() {
@@ -48,7 +46,7 @@ public class SearchPeopleAdapter extends NormalSwipeAdapter<SearchPeopleItem> {
         });
     }
 
-    private void  goToDetail(Context context,String id){
+    private void  goToDetail(Context context, String id){
         Intent intent=new Intent(context, UserDetailActivity.class);
         intent.putExtra(Arg.LOAD_USER_DETAIL,id);
         context.startActivity(intent);
@@ -63,6 +61,4 @@ public class SearchPeopleAdapter extends NormalSwipeAdapter<SearchPeopleItem> {
             acNum=(TextView)itemView.findViewById(R.id.search_people_ac);
         }
     }
-
-
 }

@@ -5,6 +5,7 @@ import android.util.Log;
 import java.io.IOException;
 
 import okhttp3.Response;
+import thereisnospon.acclient.api.HdojApi;
 import thereisnospon.acclient.data.ProblemDetailBuilder;
 import thereisnospon.acclient.utils.net.HttpUtil;
 
@@ -26,7 +27,7 @@ public class ShowProblemModel implements ShowProblemContact.Model {
     private String getHtml(int id){
         try{
             Response response= HttpUtil.getInstance()
-                    .get("http://acm.hdu.edu.cn/showproblem.php")
+                    .get(HdojApi.SHOW_PROBLEM)
                     .addParameter("pid",""+id)
                     .execute();
              String html=new String(response.body().bytes(),"gb2312");

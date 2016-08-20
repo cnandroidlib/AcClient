@@ -2,6 +2,8 @@ package thereisnospon.acclient.modules.search_people;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import thereisnospon.acclient.R;
+
 import thereisnospon.acclient.base.adapter.BaseSwipeAdapter;
 import thereisnospon.acclient.base.fragment.BaseSwipeFragment;
 import thereisnospon.acclient.data.SearchPeopleItem;
@@ -24,7 +27,6 @@ public class SearchPeopleFragment extends BaseSwipeFragment<SearchPeopleItem>
     private static final String TAG="SearchPeopleContact";
     private SearchPeopleContact.Presenter presenter;
 
-
     private String key;
 
     public static SearchPeopleFragment newInstance(String key){
@@ -34,49 +36,48 @@ public class SearchPeopleFragment extends BaseSwipeFragment<SearchPeopleItem>
     }
 
 
-    @Override
-    public void refreshPeople(List<SearchPeopleItem> list) {
-        clearData();
-        onMore(list);
-    }
-
-    @Override
-    public void loadMorePeople(List<SearchPeopleItem> list) {
-        onMore(list);
-    }
-
-    @Override
-    public void onFailure(String err) {
-        Log.d(TAG, "onFailure: "+err);
-    }
-
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_search_people,container,false);
-        init(view,R.id.search_people_swipe,R.id.search_people_recycle);
+        initRefreshViews(view,R.id.search_people_swipe,R.id.search_people_recycle);
         presenter=new SearchPeoplePresenter(this);
         return view;
     }
 
     @Override
-    public void onLoadMore() {
-        presenter.loadMorePeople(key);
-    }
-
-    @Override
-    public BaseSwipeAdapter<SearchPeopleItem> createAdapter(List<SearchPeopleItem> list) {
+    public BaseSwipeAdapter<SearchPeopleItem> createItemAdapter(List<SearchPeopleItem> list) {
         return new SearchPeopleAdapter(list);
     }
 
     @Override
-    public boolean hasMore() {
-        return true;
+    public RecyclerView.LayoutManager createLayoutManager() {
+        return new LinearLayoutManager(getActivity());
     }
 
     @Override
-    public void onRefresh() {
+    public void loadMore() {
+        presenter.loadMorePeople(key);
+    }
+
+    @Override
+    public void refresh() {
         presenter.searchPeople(key);
+    }
+
+    @Override
+    public void refreshPeople(List<SearchPeopleItem> list) {
+        onRefreshData(list);
+    }
+
+    @Override
+    public void loadMorePeople(List<SearchPeopleItem> list) {
+        onMoreData(list);
+    }
+
+    @Override
+    public void onFailure(String err) {
+        Log.d(TAG, "onFailure: "+err);
+        enableLoadMore(false);
     }
 }

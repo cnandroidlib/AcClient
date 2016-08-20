@@ -28,7 +28,7 @@ public class LoginUtil {
 
     public static void login(String userName,String password){
         HttpUtil util=HttpUtil.getInstance();
-        util.post("http://acm.hdu.edu.cn/userloginex.php?action=login")
+        util.post(HdojApi.LOGIN)
                 .addParameter("username",userName)
                 .addParameter("userpass",password)
                 .addParameter("login","Sign In")

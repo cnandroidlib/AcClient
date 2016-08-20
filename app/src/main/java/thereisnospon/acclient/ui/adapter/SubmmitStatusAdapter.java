@@ -11,35 +11,32 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import thereisnospon.acclient.R;
-import thereisnospon.acclient.base.adapter.BaseSwipeAdapter;
 import thereisnospon.acclient.base.adapter.NormalSwipeAdapter;
 import thereisnospon.acclient.data.SubmmitStatus;
 
 /**
- * Created by yzr on 16/6/18.
+ * Created by yzr on 16/8/20.
  */
 public class SubmmitStatusAdapter extends NormalSwipeAdapter<SubmmitStatus> {
-
 
     public SubmmitStatusAdapter(List<SubmmitStatus> list) {
         super(list);
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateItemViewHolder(ViewGroup viewGroup, int viewType) {
-        View view= LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.item_submmit_status,viewGroup,false);
+    public RecyclerView.ViewHolder createNormalViewHolder(ViewGroup parent, int viewType) {
+        View view= LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_submmit_status,parent,false);
         return new ItemViewHolder(view);
     }
 
     @Override
-    public void onBindItemViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void bindNormalViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
         SubmmitStatus status=getItem(position);
-        ItemViewHolder vh=(ItemViewHolder)holder;
+        ItemViewHolder vh=(ItemViewHolder)viewHolder;
         vh.judge.setText(status.getStatus());
         vh.author.setText(status.getUserName());
         vh.id.setText(status.getSubmmitId());
-
     }
 
     public static class ItemViewHolder extends RecyclerView.ViewHolder{
@@ -51,4 +48,5 @@ public class SubmmitStatusAdapter extends NormalSwipeAdapter<SubmmitStatus> {
             ButterKnife.bind(this,itemView);
         }
     }
+
 }

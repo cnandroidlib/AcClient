@@ -5,17 +5,19 @@ package thereisnospon.acclient.api;
  */
 public class HdojApi {
 
-    public static final String PROBLEM_LIST="http://acm.hdu.edu.cn/listproblem.php";
+    public static final String PROBLEM_LIST="http://acm.split.hdu.edu.cn/listproblem.php";
 
-    public static final String SEARCH_PROBLEM_BYTITLE="http://acm.hdu.edu.cn/search.php?action=listproblem";
+    public static final String SEARCH_PROBLEM_BYTITLE="http://acm.split.hdu.edu.cn/search.php?action=listproblem";
 
 
-    public static final String LOGIN="http://acm.hdu.edu.cn/userloginex.php?action=login";
-    public static final String SEARCH_PEOPLE="http://acm.hdu.edu.cn/search.php";
+    public static final String LOGIN="http://acm.split.hdu.edu.cn/userloginex.php?action=login";
+    public static final String SEARCH_PEOPLE="http://acm.split.hdu.edu.cn/search.php";
 
-    public static final String USER_INFO="http://acm.hdu.edu.cn/userstatus.php";
+    public static final String USER_INFO="http://acm.split.hdu.edu.cn/userstatus.php";
 
-    public static final String JUDGE_STATUS="http://acm.hdu.edu.cn/status.php?";
+    public static final String JUDGE_STATUS="http://acm.split.hdu.edu.cn/status.php?";
 
-    public static final String VIEW_CODE="http://acm.hdu.edu.cn/viewcode.php?rid=";
+    public static final String VIEW_CODE="http://acm.split.hdu.edu.cn/viewcode.php?rid=";
+
+    public static final String SHOW_PROBLEM="http://acm.split.hdu.edu.cn/showproblem.php";
 }

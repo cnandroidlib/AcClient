@@ -26,7 +26,7 @@
             android:label="题目列表"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".modules.problem_detail.ShowProblemActivity" />
-        <activity android:name=".modules.search_people.SearchPeopleActivity" />
+        <activity android:name=".modules.search_people.SearchPeopleActivity" android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".modules.user_detail.UserDetailActivity" />
         <activity android:name=".modules.submmit_status.SubmmitStatusActivity" />
         <activity android:name=".DebugActivity">

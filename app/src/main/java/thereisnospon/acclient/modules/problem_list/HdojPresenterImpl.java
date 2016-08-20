@@ -21,45 +21,21 @@ public class HdojPresenterImpl implements HdojContact.Presenter {
     HdojContact.Model model;
     HdojContact.View view;
 
-    public HdojPresenterImpl(HdojContact.View view) {
+    public HdojPresenterImpl(HdojContact.View view,int page) {
         this.view=view;
-        model=new HdojProbelemModeImpl();
+        model=new HdojProbelemModeImpl(page);
     }
 
+
+
+    @Deprecated
     @Override
     public void loadPage(final int page) {
 
-        Logger.d("lpage"+page);
-        Observable.just(page)
-                .observeOn(Schedulers.io())
-                .map(new Func1<Object, List<HdojProblem>>() {
-                    @Override
-                    public List<HdojProblem> call(Object object) {
-                        return model.loadPage(page);
-                    }
-                })
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<List<HdojProblem>>() {
-                    @Override
-                    public void call(List<HdojProblem> hdojProblems) {
-                        if(hdojProblems!=null&&hdojProblems.size()>0){
-                            view.onSuccess(hdojProblems);
-                        }else{
-                            view.onFailure("获取失败");
-                        }
-                    }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        view.onFailure("获取失败");
-                    }
-                });
     }
 
     @Override
     public void loadMore() {
-
-        Log.d("HHDOJ", "PRE SENTER LOAD MORE");
         Observable.just(1)
                 .observeOn(Schedulers.io())
                 .map(new Func1<Object, List<HdojProblem>>() {
@@ -89,7 +65,7 @@ public class HdojPresenterImpl implements HdojContact.Presenter {
 
     @Override
     public void refresh() {
-       /* Observable.empty()
+       Observable.just(1)
                 .observeOn(Schedulers.io())
                 .map(new Func1<Object, List<HdojProblem>>() {
                     @Override
@@ -114,8 +90,7 @@ public class HdojPresenterImpl implements HdojContact.Presenter {
                     public void call(Throwable throwable) {
                         view.onFailure("刷新失败");
                     }
-                });*/
-        view.onFailure("刷新失败");
+                });
     }
 
 }

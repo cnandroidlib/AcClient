@@ -19,24 +19,25 @@ public class HdojProbelemModeImpl implements HdojContact.Model {
     int mloadPge=-1;
 
 
+    public HdojProbelemModeImpl(int page){
+        this.mloadPge=page;
+    }
+
     @Override
     public List<HdojProblem> loadPage(int page) {
         String html=getHtml(page);
         List<HdojProblem>list= HdojProblem.Builder.buildProblems(html);
-        Logger.d("loadpagesize"+list.size());
         if(list!=null&&list.size()>0){
-
-            this.mloadPge=page;
+            this.currentPage=page;
         }
         return list;
     }
-
 
     @Override
     public List<HdojProblem> loadMore() {
         if(mloadPge!=-1)
             return null;
-        String html=getHtml(currentPage);
+        String html=getHtml(currentPage+1);
         List<HdojProblem>list= HdojProblem.Builder.buildProblems(html);
         if(list!=null&&list.size()>0){
             currentPage++;
