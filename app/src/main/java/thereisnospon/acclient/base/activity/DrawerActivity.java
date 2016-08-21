@@ -15,7 +15,7 @@ import thereisnospon.acclient.R;
 /**
  * Created by yzr on 16/6/6.
  */
-public  abstract class DrawerActivity extends AppCompatActivity
+public  abstract class DrawerActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override

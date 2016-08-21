@@ -1,29 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <array name="code_theme_names">
-        <item>Android Studio</item>
-        <item>Sublime</item>
-        <item>Idea</item>
-    </array>
 
-    <array name="code_theme_values">
-        <item>Android Studio</item>
-        <item>Sublime</item>
-        <item>Idea</item>
-    </array>
 
-    <array name="test_names">
-        <item>c</item>
-        <item>java</item>
-        <item>c++</item>
-    </array>
+    <string-array name="them_names">
+        <item>AndroidStudio</item>
+        <item>Arduino Light</item>
+        <item>Default</item>
+        <item>Github</item>
+        <item>Monokai Sublime</item>
+        <item>Obsidian</item>
+        <item>Solarized Dark</item>
+        <item>Solarized Light</item>
+    </string-array>
 
-    <array name="test_values">
-        <item>c</item>
-        <item>java</item>
-        <item>c++</item>
-    </array>
+    <string-array name="them_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+    </string-array>
 
+    <string name="theme_value_def">0</string>
+
+    <string-array name="code_languages">
+        <item>G++</item>
+        <item>GCC</item>
+        <item>C++</item>
+        <item>C</item>
+        <item>Pascal</item>
+        <item>Java</item>
+        <item>C#</item>
+    </string-array>
+
+    <string-array name="code_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
 
 </resources>

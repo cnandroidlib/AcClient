@@ -15,6 +15,7 @@ import thereisnospon.acclient.api.HdojApi;
 import thereisnospon.acclient.event.Event;
 import thereisnospon.acclient.event.EventCode;
 import thereisnospon.acclient.event.EventUtil;
+import thereisnospon.acclient.modules.submmit.SubmmitUtil;
 import thereisnospon.acclient.utils.net.HttpUtil;
 import thereisnospon.acclient.utils.net.callback.StringCallback;
 import thereisnospon.acclient.utils.net.cookie.PresistentCookieStroe;
@@ -40,16 +41,13 @@ public class LoginUtil {
                     }
                     @Override
                     public void onSuccess(String str, Headers headers) {
-
                         Event<String> ev=new Event<String>(str, EventCode.LOGIN_SUCCESS);
-
-                        Log.d("cookies","ifnot:"+cheackCookie());
-
                         EventUtil.posetEventOnMainThread(ev);
-
                     }
                 });
     }
+
+
 
     public static boolean cheackCookie() {
         PresistentCookieStroe store=new PresistentCookieStroe(AppApplication.context);

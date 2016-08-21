@@ -24,12 +24,16 @@
         <activity
             android:name=".modules.problem_list.HdojActivity"
             android:label="题目列表"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppThemeNoActionBar" />
         <activity android:name=".modules.problem_detail.ShowProblemActivity" />
-        <activity android:name=".modules.search_people.SearchPeopleActivity" android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".modules.search_people.SearchPeopleActivity"
+            android:theme="@style/AppThemeNoActionBar" />
         <activity android:name=".modules.user_detail.UserDetailActivity" />
         <activity android:name=".modules.submmit_status.SubmmitStatusActivity" />
-        <activity android:name=".DebugActivity">
+        <activity
+            android:name=".DebugActivity"
+            android:theme="@style/AppThemeNoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -38,8 +42,9 @@
         </activity>
         <activity
             android:name=".modules.show_code.CodeActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".modules.settings.SettingActivity"></activity>
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity android:name=".modules.settings.SettingActivity" />
+        <activity android:name=".modules.submmit.SubmmitAnwserActivity" android:theme="@style/AppThemeNoActionBar"></activity>
     </application>
 
 </manifest>

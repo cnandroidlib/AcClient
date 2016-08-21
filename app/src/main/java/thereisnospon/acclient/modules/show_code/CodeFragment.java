@@ -10,9 +10,11 @@ import android.widget.LinearLayout;
 
 import com.orhanobut.logger.Logger;
 
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import thereisnospon.acclient.R;
+import thereisnospon.acclient.modules.settings.Settings;
 import thereisnospon.codeview.CodeView;
 import thereisnospon.codeview.CodeViewTheme;
 
@@ -23,6 +25,13 @@ public class CodeFragment extends Fragment implements CodeContact.View{
 
 
     CodeContact.Presenter presenter;
+
+
+    public static final CodeViewTheme []themes=new CodeViewTheme[]{
+           CodeViewTheme.ANDROIDSTUDIO,CodeViewTheme.ARDUINO_LIGHT,CodeViewTheme.DEFAULT,
+            CodeViewTheme.GITHUB,CodeViewTheme.MONOKAI_SUBLIME,CodeViewTheme.OBSIDIAN,
+            CodeViewTheme.SOLARIZED_DARK,CodeViewTheme.SOLARIZED_LIGHT,
+    };
 
    @BindView(R.id.codeView) CodeView codeView;
 
@@ -39,7 +48,12 @@ public class CodeFragment extends Fragment implements CodeContact.View{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_showcode,container,false);
         ButterKnife.bind(this,view);
-        codeView.setTheme(CodeViewTheme.MONOKAI_SUBLIME);
+
+        Settings settings=Settings.getInstance();
+        int index= settings.getTheme();
+
+
+        codeView.setTheme(themes[index]);
         codeView.fillColor();
         LinearLayout linearLayout=(LinearLayout)view.findViewById(R.id.code_back);
         linearLayout.setBackgroundColor(codeView.getCodeBackgroundColor());

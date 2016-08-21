@@ -10,7 +10,30 @@
     </style>
 
 
-    <style name="AppTheme.NoActionBar">
+    <style name="AppThemeNight" parent="Theme.AppCompat.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="cardViewColor">@color/cardViewColor</item>
+        <item name="preferenceFragmentListStyle">@style/list</item>
+    </style>
+
+
+    <attr name="preferenceFragmentListStyle" format="reference"></attr>
+
+    <style name="list">
+        <item name="android:background">#ffaaee</item>
+    </style>
+
+
+    <style name="AppThemeNightNoactionBar" parent="AppThemeNoActionBar">
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/colorAccent</item>
+       <item name="preferenceFragmentListStyle">@style/list</item>
+    </style>
+
+
+    <style name="AppThemeNoActionBar" parent="AppTheme">
         <item name="android:windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

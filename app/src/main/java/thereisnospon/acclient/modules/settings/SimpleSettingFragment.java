@@ -4,76 +4,135 @@ package thereisnospon.acclient.modules.settings;
  * Created by yzr on 16/8/3.
  */
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.RingtonePreference;
+import android.preference.SwitchPreference;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import com.orhanobut.logger.Logger;
+
+import java.util.Set;
+
+import thereisnospon.acclient.R;
 
 public  class SimpleSettingFragment extends PreferenceFragment
         implements
         Preference.OnPreferenceChangeListener,
         Preference.OnPreferenceClickListener{
 
+    ListPreference theme;
+    ListPreference compiler;
+    Preference about;
+    SwitchPreference exitConfirm;
+    CheckBoxPreference skin;
+    Settings settings;
+
+
+    private OnThemeChangeListener themeChangeListener;
+
+
+
+
+    interface OnThemeChangeListener{
+        void onThemeChange();
+        void onFragmentCreate(Toolbar toolbar);
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        addPreferencesFromResource(R.xml.settings);
+
+
+        themeChangeListener=(OnThemeChangeListener)getActivity();
+
+        settings=Settings.getInstance();
+        theme=(ListPreference)findPreference(Settings.THEME_PREF);
+
+
+        String themeSummary=theme.getEntries()[settings.getTheme()].toString();
+        theme.setSummary(themeSummary);
+        theme.setOnPreferenceChangeListener(this);
+        exitConfirm=(SwitchPreference)findPreference(Settings.EXIT_CONFIRM);
+        exitConfirm.setOnPreferenceChangeListener(this);
+
+        about=findPreference(Settings.ABOUT_PREF);
+        about.setOnPreferenceClickListener(this);
+        skin=(CheckBoxPreference) findPreference(Settings.SKIN_PREF);
+        skin.setOnPreferenceChangeListener(this);
+
+
+        compiler=(ListPreference)findPreference(Settings.COMPILER);
+        String compilerSummary=compiler.getEntries()[settings.getCompiler()].toString();
+        compiler.setSummary(compilerSummary);
+        compiler.setOnPreferenceChangeListener(this);
     }
 
-    /**
-     * 当设置的属性更改时进行相应操作,可能有些设置的更改需要得到立刻处理,所以可能要监听
-     * 这里的功能主要是根据值的改变设置属性上对应的提示文字
-     * 如果要某一个属性进行监听(example):
-     * findPreference("pref_net").setOnPreferenceChangeListener(this);
-     */
+    LinearLayout linearLayout;
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view=super.onCreateView(inflater, container, savedInstanceState);
+        Toolbar toolbar=(Toolbar)inflater.inflate(R.layout.toolbar,null,false);
+        linearLayout=(LinearLayout)view;
+        linearLayout.addView(toolbar,0);
+
+        themeChangeListener.onFragmentCreate(toolbar);
+        return view;
+    }
+
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-
-        String stringValue = newValue.toString();
-
-        if (preference instanceof ListPreference) {
-            //对于list类型的属性,提示内容为选择的值
-            ListPreference listPreference = (ListPreference) preference;
-            int index = listPreference.findIndexOfValue(stringValue);
-
-            preference.setSummary(
-                    index >= 0
-                            ? listPreference.getEntries()[index]
-                            : null);
-
-        } else if (preference instanceof RingtonePreference) {
-            // For ringtone preferences, look up the correct display value
-            // using RingtoneManager.
-            if (TextUtils.isEmpty(stringValue)) {
-                // Empty values correspond to 'silent' (no ringtone).
-                preference.setSummary("slient");
-
-            } else {
-                Ringtone ringtone = RingtoneManager.getRingtone(
-                        preference.getContext(), Uri.parse(stringValue));
-
-                if (ringtone == null) {
-                    // Clear the summary if there was a lookup error.
-                    preference.setSummary(null);
-                } else {
-                    // Set the summary to reflect the new ringtone display
-                    // name.
-                    String name = ringtone.getTitle(preference.getContext());
-                    preference.setSummary(name);
-                }
-            }
-        } else {
-            // For all other preferences, set the summary to the value's
-            // simple string representation.
-            preference.setSummary(stringValue);
-        }
+        listSummary(preference,newValue);
+        if(preference==theme){
+            settings.theme= Integer.parseInt(newValue.toString());
+            settings.putString(Settings.THEME_PREF,settings.theme+"");
+        }else if(preference==exitConfirm){
+           settings.exitConfirm=Boolean.valueOf(newValue.toString());
+           settings.putBoolean(Settings.EXIT_CONFIRM,settings.exitConfirm);
+       }else if(preference==skin){
+           settings.skinPref=Boolean.valueOf(newValue.toString());
+           settings.putBoolean(Settings.SKIN_PREF,settings.skinPref);
+           themeChangeListener.onThemeChange();
+       }else if(preference==compiler){
+           settings.compiler=Integer.parseInt(newValue.toString());
+           settings.putString(Settings.COMPILER,settings.compiler+"");
+       }
         return true;
+    }
+
+    public void listSummary(Preference preference,Object value){
+        if(preference instanceof ListPreference){
+            String str=getEntry((ListPreference)preference,value);
+            preference.setSummary(str);
+        }
+    }
+
+    String getEntry(ListPreference preference,Object newValue){
+        int index=preference.findIndexOfValue(newValue.toString());
+        CharSequence rets[]=preference.getEntries();
+        return index>=0?rets[index].toString():null;
     }
 
     /**
@@ -81,6 +140,9 @@ public  class SimpleSettingFragment extends PreferenceFragment
      */
     @Override
     public boolean onPreferenceClick(Preference preference) {
+        if(preference==about){
+            Toast.makeText(getActivity(),"hello",Toast.LENGTH_SHORT).show();
+        }
         return false;
     }
 

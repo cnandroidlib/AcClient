@@ -20,4 +20,7 @@ public class HdojApi {
     public static final String VIEW_CODE="http://acm.split.hdu.edu.cn/viewcode.php?rid=";
 
     public static final String SHOW_PROBLEM="http://acm.split.hdu.edu.cn/showproblem.php";
+
+
+    public static final String SUBMMIT="http://acm.split.hdu.edu.cn/submit.php?action=submit";
 }
