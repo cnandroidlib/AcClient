@@ -26,11 +26,17 @@
     </style>
 
 
+    <attr name="codeEditTextColor" format="color"></attr>
+    <attr name="codeEditBackground" format="color"></attr>
+
     <style name="AppThemeNightNoactionBar" parent="AppThemeNoActionBar">
         <item name="colorAccent">@color/colorPrimary</item>
         <item name="colorPrimary">@color/colorAccent</item>
        <item name="preferenceFragmentListStyle">@style/list</item>
     </style>
+
+    <color name="codeEditBack">#fdf6e3</color>
+    <color name="codeEditText">#657b83</color>
 
 
     <style name="AppThemeNoActionBar" parent="AppTheme">
@@ -38,6 +44,8 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="cardViewColor">@color/cardViewColor</item>
+        <item name="codeEditTextColor"> @color/codeEditText</item>
+        <item name="codeEditBackground">@color/codeEditBack</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
@@ -64,4 +72,23 @@
         <!--<item name="suggestionRowLayout">...</item>-->
 
     </style>
+
+    <!--android:layout_marginLeft="@dimen/card_margin"-->
+    <!--android:layout_marginRight="@dimen/card_margin"-->
+    <!--android:layout_marginTop="@dimen/card_margin"-->
+    <!--android:layout_marginBottom="@dimen/card_margin"-->
+    <!--card_view:cardCornerRadius="4dp"-->
+    <!--card_view:cardElevation="8dp"-->
+    <!--card_view:cardPreventCornerOverlap="true"-->
+    <!--card_view:contentPadding="10dp"-->
+
+
+    <style name="cardViewStyle">
+        <item name="android:layout_margin">@dimen/card_margin</item>
+        <item name="cardCornerRadius">4dp</item>
+        <item name="cardElevation">4dp</item>
+        <item name="cardPreventCornerOverlap">true</item>
+        <item name="contentPadding">5dp</item>
+    </style>
+
 </resources>

@@ -14,6 +14,7 @@ import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 import thereisnospon.acclient.api.HdojApi;
 import thereisnospon.acclient.data.SubmmitStatus;
+import thereisnospon.acclient.utils.StringCall;
 import thereisnospon.acclient.utils.net.HttpUtil;
 
 /**
@@ -44,19 +45,25 @@ public class SubmmitUtil {
             "\n" +
             "}";
 
-    public static void submmit(final String problem, final String language, final String code, Action1<String>success,Action1<Throwable>err){
+
+
+    public static void submmit(
+            final String problem, final String compiler,
+            final String code, final StringCall call) {
 
         Observable.just(1)
                 .observeOn(Schedulers.io())
                 .map(new Func1<Integer, String>() {
                     @Override
                     public String call(Integer integer) {
-                        return getHtml(problem,language,code);
+                        return getHtml(problem,compiler,code);
                     }
                 })
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(success,err);
+                .subscribe(call);
+
     }
+
 
 
     public static String getHtml(String problem,String language,String code){
@@ -77,22 +84,6 @@ public class SubmmitUtil {
     }
 
 
-    public static void testPost(){
-        try{
-            Response response=HttpUtil.getInstance()
-                    .post(HdojApi.SUBMMIT)
-                    .addParameter("check","0")
-                    .addParameter("problemid","1000")
-                    .addParameter("language","0")
-                    .addParameter("usercode",CODE)
-                    .execute();
-            String html=new String(response.body().bytes(),"gb2312");
-            List<SubmmitStatus>list=SubmmitStatus.Builder.parse(html);
-            Logger.d("test:"+list.size());
-        }catch (IOException e){
-
-        }
 
 
-    }
 }

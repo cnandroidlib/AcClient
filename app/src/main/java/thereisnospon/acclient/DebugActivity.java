@@ -1,6 +1,7 @@
 package thereisnospon.acclient;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,7 +15,11 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.Headers;
+import rx.functions.Action1;
 import thereisnospon.acclient.base.activity.DrawerActivity;
+import thereisnospon.acclient.event.Arg;
+import thereisnospon.acclient.event.Msg;
 import thereisnospon.acclient.modules.login.LoginActivity;
 import thereisnospon.acclient.modules.login.LoginUtil;
 import thereisnospon.acclient.modules.problem_list.HdojActivity;
@@ -25,6 +30,9 @@ import thereisnospon.acclient.modules.show_code.CodeActivity;
 import thereisnospon.acclient.modules.show_code.CodeFragment;
 import thereisnospon.acclient.modules.submmit.SubmmitAnwserActivity;
 import thereisnospon.acclient.modules.submmit_status.SubmmitStatusActivity;
+import thereisnospon.acclient.modules.user_detail.UserDetailActivity;
+import thereisnospon.acclient.utils.SpUtil;
+import thereisnospon.acclient.utils.net.callback.StringCallback;
 
 public class DebugActivity extends DrawerActivity implements ListView.OnItemClickListener{
 
@@ -34,8 +42,19 @@ public class DebugActivity extends DrawerActivity implements ListView.OnItemClic
     ArrayAdapter<String>adapter;
     String []debugs=new String[]{
             "Login","problem","search","submmit","Code","Setting"
-            ,"submmit anwser"
+            ,"submmit anwser","user"
     };
+
+    Handler handler;
+
+    void mainMsg(final String msg){
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                Msg.t(msg);
+            }
+        });
+    }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -55,6 +74,11 @@ public class DebugActivity extends DrawerActivity implements ListView.OnItemClic
                 break;
             case 6:cl= SubmmitAnwserActivity.class;
                 break;
+            case 7:cl= UserDetailActivity.class;
+                Intent intent=new Intent(this,cl);
+                intent.putExtra(Arg.LOAD_USER_DETAIL,"465101800");
+                startActivity(intent);
+                return ;
             default:
                 break;
         }
@@ -66,14 +90,42 @@ public class DebugActivity extends DrawerActivity implements ListView.OnItemClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_debug);
+        handler=new Handler();
         initList();
         initDrawer();
-        if(LoginUtil.cheackCookie()){
-            Toast.makeText(this,"登陆成功",Toast.LENGTH_SHORT).show();
 
-        }else{
-            Toast.makeText(this,"验证超时",Toast.LENGTH_SHORT).show();
+        checkLogin();
+
+
+    }
+
+
+    void goToLogin(){
+        Msg.t("请先登陆");
+        Intent intent=new Intent(this,LoginActivity.class);
+        startActivity(intent);
+    }
+
+    void checkLogin(){
+        final String userName= SpUtil.getInstance().getString(SpUtil.NAME);
+        String password= SpUtil.getInstance().getString(SpUtil.PASS);
+        if(userName==null||password==null){
+            goToLogin();
+            return;
         }
+        LoginUtil.login(userName, password, new LoginUtil.Call() {
+            @Override
+            public void success(String nickName) {
+                setTitle(nickName);
+                Msg.t("验证成功"+userName);
+            }
+
+            @Override
+            public void failure(String msg) {
+                SpUtil.getInstance().clear();
+                goToLogin();
+            }
+        });
     }
 
     void initList(){

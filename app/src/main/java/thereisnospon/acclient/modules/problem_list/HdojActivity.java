@@ -77,11 +77,7 @@ public class HdojActivity extends SearchActivity
             new BottomSheetBehavior.BottomSheetCallback() {
         @Override
         public void onStateChanged(@NonNull View bottomSheet, int newState) {
-            if(newState==BottomSheetBehavior.STATE_COLLAPSED){
-                faButton.setVisibility(View.VISIBLE);
-            }else if(newState==BottomSheetBehavior.STATE_EXPANDED){
-                faButton.setVisibility(View.GONE);
-            }
+
         }
 
         @Override

@@ -2,6 +2,12 @@ package thereisnospon.acclient.modules.login;
 
 import android.util.Log;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
 import java.net.URI;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +16,14 @@ import java.util.logging.Logger;
 import okhttp3.Cookie;
 import okhttp3.Headers;
 import okhttp3.HttpUrl;
+import okhttp3.Response;
+import rx.Observable;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action;
+import rx.functions.Action1;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 import thereisnospon.acclient.AppApplication;
 import thereisnospon.acclient.api.HdojApi;
 import thereisnospon.acclient.event.Event;
@@ -26,6 +40,70 @@ import thereisnospon.acclient.utils.net.cookie.PresistentCookieStroe;
 
 
 public class LoginUtil {
+
+    public abstract static class Call extends Subscriber<String>{
+
+        public abstract void success(String nickName);
+        public abstract void failure(String msg);
+
+        @Override
+        public void onCompleted() {
+
+        }
+
+        @Override
+        public void onError(Throwable e) {
+            failure(e.getMessage());
+        }
+
+        @Override
+        public void onNext(String s) {
+            if(s!=null)
+                success(s);
+            else failure("null");
+        }
+    }
+
+    public static void login(final String userName, final String password, Call call){
+        Observable.just(userName)
+                .observeOn(Schedulers.io())
+                .map(new Func1<String, String>() {
+                    @Override
+                    public String call(String s) {
+                        return parseName(loginHtml(userName,password));
+                    }
+                })
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(call);
+    }
+
+
+    static String parseName(String html){
+        Document document= Jsoup.parse(html);
+        Elements as=document.getElementsByTag("a");
+        int len=as!=null?as.size():0;
+        for(int i=0;i<len;i++){
+            Element a=as.get(i);
+            Elements c=a.getElementsByAttributeValue("alt","Author");
+            if(c!=null&&c.size()>0)
+                return a.text();
+        }
+        return null;
+    }
+
+   static String loginHtml(String userName,String password){
+        try{
+            Response res=HttpUtil.getInstance().post(HdojApi.LOGIN)
+                    .addParameter("username",userName)
+                    .addParameter("userpass",password)
+                    .addParameter("login","Sign In")
+                    .execute();
+            return new String(res.body().bytes(),"gb2312");
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        return "";
+    }
 
     public static void login(String userName,String password){
         HttpUtil util=HttpUtil.getInstance();
@@ -49,6 +127,7 @@ public class LoginUtil {
 
 
 
+
     public static boolean cheackCookie() {
         PresistentCookieStroe store=new PresistentCookieStroe(AppApplication.context);
         HttpUrl url=HttpUrl.get(URI.create(HdojApi.LOGIN));
@@ -61,20 +140,7 @@ public class LoginUtil {
     }
 
     public static void testGet(){
-        HttpUtil.getInstance()
-                .get("http://acm.hdu.edu.cn/viewcode.php?rid=15062064")
-                .enqueue(new StringCallback() {
-                    @Override
-                    public void onFail(String msg) {
-                        Event<String>ev=new Event<>(msg,EventCode.TEST_GET_FAILURE);
-                        EventUtil.posetEventOnMainThread(ev);
-                    }
-                    @Override
-                    public void onSuccess(String str, Headers headers) {
-                        Event<String>ev=new Event<String>(str,EventCode.TEST_GET_SUCCESS);
-                        EventUtil.posetEventOnMainThread(ev);
-                    }
-                });
+
     }
 
 }

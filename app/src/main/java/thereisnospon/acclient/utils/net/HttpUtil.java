@@ -20,7 +20,7 @@ public class HttpUtil {
 
     private HttpUtil(){
 
-        Log.d("NetActivityXXX","UTIL THRAD"+Thread.currentThread().getName());
+//        Log.d("NetActivityXXX","UTIL THRAD"+Thread.currentThread().getName());
         client=new OkHttpClient.Builder()
                 .cookieJar(new CookiesManager(AppApplication.context)).build();
     }
@@ -47,6 +47,6 @@ public class HttpUtil {
 
     public PostRequest post(String url){
 
-        Log.d("NetActivityXXX","POST THREAD"+Thread.currentThread().getName());
+        //Log.d("NetActivityXXX","POST THREAD"+Thread.currentThread().getName());
         return new PostRequest(url,client);}
 }

@@ -36,10 +36,17 @@ public class CodeFragment extends Fragment implements CodeContact.View{
    @BindView(R.id.codeView) CodeView codeView;
 
     String id;
+    String code;
 
     public static CodeFragment newInstance(String id){
         CodeFragment fragment=new CodeFragment();
         fragment.id=id;
+        return fragment;
+    }
+
+    public static CodeFragment newCodeInstance(String code){
+        CodeFragment fragment=new CodeFragment();
+        fragment.code=code;
         return fragment;
     }
 
@@ -48,19 +55,27 @@ public class CodeFragment extends Fragment implements CodeContact.View{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_showcode,container,false);
         ButterKnife.bind(this,view);
+        initCodeView(view);
+        presenter=new CodePresenter(this);
+        showCode();
+        return view;
+    }
 
+    void showCode(){
+        if(code!=null){
+            codeView.showCode(code);
+        }else if (id!=null){
+            presenter.loadCode(id);
+        }
+    }
+
+    void initCodeView(View view){
         Settings settings=Settings.getInstance();
         int index= settings.getTheme();
-
-
         codeView.setTheme(themes[index]);
         codeView.fillColor();
         LinearLayout linearLayout=(LinearLayout)view.findViewById(R.id.code_back);
         linearLayout.setBackgroundColor(codeView.getCodeBackgroundColor());
-        presenter=new CodePresenter(this);
-        presenter.loadCode(id);
-        Logger.d("create faragment");
-        return view;
     }
 
     @Override

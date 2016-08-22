@@ -30,7 +30,7 @@
 
 
 
-    <LinearLayout
+    <thereisnospon.acclient.widget.BottomsheetLayout
         android:layout_alignParentBottom="true"
         android:id="@+id/problem_bottomsheet"
         android:layout_width="match_parent"
@@ -50,12 +50,14 @@
             android:id="@+id/problem_pager_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-    </LinearLayout>
+    </thereisnospon.acclient.widget.BottomsheetLayout>
 
 
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/problem_fab"
+        app:layout_behavior="thereisnospon.acclient.widget.RotateBehavior"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"

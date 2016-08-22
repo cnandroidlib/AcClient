@@ -29,7 +29,7 @@
         <activity
             android:name=".modules.search_people.SearchPeopleActivity"
             android:theme="@style/AppThemeNoActionBar" />
-        <activity android:name=".modules.user_detail.UserDetailActivity" />
+        <activity android:name=".modules.user_detail.UserDetailActivity" android:theme="@style/AppThemeNoActionBar" />
         <activity android:name=".modules.submmit_status.SubmmitStatusActivity" />
         <activity
             android:name=".DebugActivity"

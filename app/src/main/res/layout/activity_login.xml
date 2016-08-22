@@ -35,6 +35,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
+
+
         <Button
             android:id="@+id/login_loginbtn"
             android:elevation="2dp"
@@ -45,7 +47,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <CheckBox
+                android:id="@+id/login_check"
+              android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
     </LinearLayout>
 
 

@@ -1,19 +1,24 @@
 package thereisnospon.acclient.modules.submmit;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomSheetBehavior;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.orhanobut.logger.Logger;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
 
@@ -23,96 +28,140 @@ import rx.functions.Action1;
 import thereisnospon.acclient.R;
 import thereisnospon.acclient.base.activity.BaseActivity;
 import thereisnospon.acclient.data.SubmmitStatus;
+import thereisnospon.acclient.event.Arg;
 import thereisnospon.acclient.event.Event;
-import thereisnospon.acclient.event.EventCode;
-import thereisnospon.acclient.modules.login.LoginUtil;
+import thereisnospon.acclient.event.Msg;
 import thereisnospon.acclient.modules.settings.Settings;
+import thereisnospon.acclient.modules.show_code.CodeActivity;
+import thereisnospon.acclient.utils.StringCall;
 
-public class SubmmitAnwserActivity extends BaseActivity {
+public class SubmmitAnwserActivity extends BaseActivity implements View.OnClickListener {
 
+
+
+
+
+    private EditText submmitcode;
+    private Toolbar toolbar;
     private Spinner spinner;
 
-    int language = 0;
-    private EditText submmitcode;
-    private EditText loginusername;
-    private EditText loginpassword;
-    private Button loginbutton;
+    private LinearLayout bottomsheet;
 
-    @OnClick(R.id.login_button)
-    public void onClick() {
-        String userName=loginusername.getText().toString();
-        String password=loginpassword.getText().toString();
-        LoginUtil.login(userName,password);
+    private FloatingActionButton submmitfab;
+    private TextView submmitReview;
+    private TextView submmitSubmmit;
+    BottomSheetBehavior behavior;
+
+    int compilerChoose = 0;
+
+    void submmit(){
+        Msg.t("submmit");
+        $submmit();
     }
 
-    void onLoginSuccess(Event<String> event){
-        Toast.makeText(this,"login success",Toast.LENGTH_SHORT).show();
-        final String code=submmitcode.getText().toString();
-        final String problemId="1000";
-        final String lan=language+"";
-        SubmmitUtil.submmit(problemId, lan, code
-                , new Action1<String>() {
-                    @Override
-                    public void call(String s) {
-                            submmitSuccess(s);
-                    }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        Logger.d(throwable.getMessage());
-                    }
-                });
+    void review(){
+        Msg.t("review");
+        Intent intent=new Intent(this, CodeActivity.class);
+        String code=submmitcode.getText().toString()+"";
+        intent.putExtra(Arg.SHOWCODE_CODE,code);
+        startActivity(intent);
     }
 
     void submmitSuccess(String html){
         List<SubmmitStatus>list=SubmmitStatus.Builder.parse(html);
-        Logger.d(list.size());
         Toast.makeText(this,"submmit success"+list.size(),Toast.LENGTH_SHORT).show();
     }
 
-    void onLoginFailure(Event<String> event){
-
+    void $submmit(){
+        final String code=submmitcode.getText().toString();
+        final String problemId="1000";
+        final String lan= compilerChoose +"";
+        SubmmitUtil.submmit(problemId, lan, code, new StringCall() {
+            @Override
+            public void success(String nickName) {
+                submmitSuccess(nickName);
+            }
+            @Override
+            public void failure(String msg) {
+                Msg.t("提交失败");
+            }
+        });
     }
-
-
-    @Subscribe
-    public void onNewEvent(Event<String> event) {
-        switch (event.getEventCode()) {
-            case EventCode.LOGIN_SUCCESS:
-                onLoginSuccess(event);
-                break;
-            case EventCode.LOGIN_FAILURE:
-                onLoginFailure(event);
-                break;
-        }
-    }
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submmit_anwser);
         ButterKnife.bind(this);
-        this.loginbutton = (Button) findViewById(R.id.login_button);
-        this.loginpassword = (EditText) findViewById(R.id.login_password);
-        this.loginusername = (EditText) findViewById(R.id.login_username);
+        initView();
+    }
+
+    void initView(){
+        findView();
+        setSupportActionBar(toolbar);
+        initBottmsheet();
+       submmitcode.setText(SubmmitUtil.CODE );
+        initSpinner();
+        setTitle("1000");
+    }
+
+    void findView(){
+        this.bottomsheet = (LinearLayout) findViewById(R.id.bottomsheet);
+        this.toolbar = (Toolbar) findViewById(R.id.toolbar);
+        this.submmitfab = (FloatingActionButton) findViewById(R.id.submmit_fab);
         this.submmitcode = (EditText) findViewById(R.id.submmit_code);
         this.spinner = (Spinner) findViewById(R.id.spinner);
-
-
-        submmitcode.setText(SubmmitUtil.CODE );
-        initSpinner();
-
-        EventBus.getDefault().register(this);
+        this.toolbar = (Toolbar) findViewById(R.id.toolbar);
+        this.submmitReview=(TextView)findViewById(R.id.submmit_review);
+        this.submmitSubmmit=(TextView)findViewById(R.id.submmit_submmit);
     }
+
+
+    void initBottmsheet() {
+
+        behavior=BottomSheetBehavior.from(bottomsheet);
+        behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        submmitcode.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus)
+                    behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+            }
+        });
+        submmitfab.setOnClickListener(this);
+        submmitReview.setOnClickListener(this);
+        submmitSubmmit.setOnClickListener(this);
+        submmitcode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+            }
+        });
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.submmit_fab:
+                if(behavior.getState()==BottomSheetBehavior.STATE_EXPANDED)
+                    behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                else behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                break;
+            case R.id.submmit_review:
+                behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                review();
+                break;
+            case R.id.submmit_submmit:
+                behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                submmit();
+                break;
+        }
+    }
+
 
     private void initSpinner() {
 
         int defualtComplier=Settings.getInstance().getCompiler();
-
-
-        this.spinner = (Spinner) findViewById(R.id.spinner);
 
         String[] mItems = getResources().getStringArray(R.array.code_languages);
 
@@ -125,22 +174,37 @@ public class SubmmitAnwserActivity extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int pos, long id) {
-                onSelect(pos);
+               onComplierChange(pos);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                // Another interface callback
+
             }
         });
     }
 
 
-    public void onSelect(int position) {
-        language = position;
+    public void onComplierChange(int position) {
+        compilerChoose = position;
         String[] codeLanguages = getResources().getStringArray(R.array.code_languages);
         Toast.makeText(this, codeLanguages[position], Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_submmit_code:
+                Msg.t("menu");
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.submmit_menu, menu);
+        return true;
+    }
 
 }
