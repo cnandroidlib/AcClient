@@ -19,6 +19,7 @@ import thereisnospon.acclient.data.SubmmitStatus;
  */
 public class SubmmitStatusAdapter extends NormalSwipeAdapter<SubmmitStatus> {
 
+
     public SubmmitStatusAdapter(List<SubmmitStatus> list) {
         super(list);
     }
@@ -34,15 +35,12 @@ public class SubmmitStatusAdapter extends NormalSwipeAdapter<SubmmitStatus> {
     public void bindNormalViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
         SubmmitStatus status=getItem(position);
         ItemViewHolder vh=(ItemViewHolder)viewHolder;
-        vh.judge.setText(status.getStatus());
-        vh.author.setText(status.getUserName());
-        vh.id.setText(status.getSubmmitId());
+
     }
 
     public static class ItemViewHolder extends RecyclerView.ViewHolder{
-        @BindView(R.id.status_judge)TextView judge;
-        @BindView(R.id.status_author)TextView author;
-        @BindView(R.id.status_id)TextView id;
+
+
         public ItemViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);

@@ -47,4 +47,5 @@
         "\n" +
         "}"
     </string>
+    <string name="scroll_behavior">thereisnospon.acclient.widget.ScrollToTopBehavior</string>
 </resources>
