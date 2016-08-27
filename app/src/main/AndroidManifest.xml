@@ -29,7 +29,9 @@
         <activity
             android:name=".modules.search_people.SearchPeopleActivity"
             android:theme="@style/AppThemeNoActionBar" />
-        <activity android:name=".modules.user_detail.UserDetailActivity" android:theme="@style/AppThemeNoActionBar" />
+        <activity
+            android:name=".modules.user_detail.UserDetailActivity"
+            android:theme="@style/AppThemeNoActionBar" />
         <activity android:name=".modules.submmit_status.SubmmitStatusActivity" />
         <activity
             android:name=".DebugActivity"
@@ -44,7 +46,11 @@
             android:name=".modules.show_code.CodeActivity"
             android:theme="@style/AppThemeNoActionBar" />
         <activity android:name=".modules.settings.SettingActivity" />
-        <activity android:name=".modules.submmit.SubmmitAnwserActivity" android:theme="@style/AppThemeNoActionBar"></activity>
+        <activity
+            android:name=".modules.submmit.SubmmitAnwserActivity"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity android:name=".modules.rank.RankActivity" />
+        <activity android:name=".modules.hello.HelloActivity" android:theme="@style/AppThemeNoActionBar"></activity>
     </application>
 
 </manifest>

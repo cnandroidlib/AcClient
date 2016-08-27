@@ -40,6 +40,7 @@ public class SubmmitAnwserActivity extends BaseActivity implements View.OnClickL
 
 
 
+    private String problemId="1000";
 
     private EditText submmitcode;
     private Toolbar toolbar;
@@ -74,7 +75,6 @@ public class SubmmitAnwserActivity extends BaseActivity implements View.OnClickL
 
     void $submmit(){
         final String code=submmitcode.getText().toString();
-        final String problemId="1000";
         final String lan= compilerChoose +"";
         SubmmitUtil.submmit(problemId, lan, code, new StringCall() {
             @Override
@@ -94,15 +94,22 @@ public class SubmmitAnwserActivity extends BaseActivity implements View.OnClickL
         setContentView(R.layout.activity_submmit_anwser);
         ButterKnife.bind(this);
         initView();
+        resolveId();
+    }
+
+    void resolveId(){
+        Intent intent=getIntent();
+        problemId=intent.getStringExtra(Arg.SBUMMIT_PROBLEM_ID);
+        setTitle(problemId);
     }
 
     void initView(){
         findView();
         setSupportActionBar(toolbar);
         initBottmsheet();
-       submmitcode.setText(SubmmitUtil.CODE );
+        submmitcode.setText(SubmmitUtil.CODE );
         initSpinner();
-        setTitle("1000");
+        setTitle(problemId);
     }
 
     void findView(){

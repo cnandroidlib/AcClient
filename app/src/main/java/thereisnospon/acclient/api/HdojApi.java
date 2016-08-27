@@ -23,4 +23,8 @@ public class HdojApi {
 
 
     public static final String SUBMMIT="http://acm.split.hdu.edu.cn/submit.php?action=submit";
+
+    public static final String RANK="http://acm.split.hdu.edu.cn/ranklist.php";
+
+
 }

@@ -107,7 +107,7 @@
         android:layout_gravity="bottom|end"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        app:layout_behavior="thereisnospon.acclient.widget.RotateBehavior"
+        app:layout_behavior=".FabBehavior"
         android:layout_margin="@dimen/fab_margin"
 
         android:src="@android:drawable/ic_dialog_email" />

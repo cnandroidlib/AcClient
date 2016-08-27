@@ -1,5 +1,7 @@
 package thereisnospon.acclient.utils.net.request;
 
+import com.orhanobut.logger.Logger;
+
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 
@@ -21,6 +23,7 @@ public class GetRequest extends IRequest {
             url+="&";
         }
         url+=key+"="+value;
+        //Logger.d("get url:   "+url);
         return this;
     }
 

@@ -71,7 +71,7 @@ public class  RankItem
         }
 
 
-        private static final String ID_REGEX="\\?user=(\\S+)\"?\'?";
+        private static final String ID_REGEX="\\?user=(\\S+)[\"\']+?";
 
 
         private static String  parseId(String x){

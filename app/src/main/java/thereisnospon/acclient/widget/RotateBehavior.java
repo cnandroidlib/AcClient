@@ -23,6 +23,7 @@ class RotateBehavior  extends CoordinatorLayout.Behavior<FloatingActionButton> {
 
     public RotateBehavior() {
 
+
     }
 
     public RotateBehavior(Context context, AttributeSet attrs) {
@@ -37,15 +38,26 @@ class RotateBehavior  extends CoordinatorLayout.Behavior<FloatingActionButton> {
 
     @Override
     public boolean onDependentViewChanged(CoordinatorLayout parent, FloatingActionButton child, View dependency) {
-        float translationY = getFabTranslationYForSnackbar(parent, child);
+        /*float translationY = getFabTranslationYForSnackbar(parent, child);
         float percentComplete = -translationY / dependency.getHeight();
         child.setRotation(20* percentComplete);
         child.setTranslationY(translationY);
-        Logger.e("tri"+translationY);
-        Log.d("ttag",""+translationY);
+        x();
+        Logger.d("dependency y"+dependency.getY());*/
+
         return false;
     }
 
+
+    void x(){
+        y();
+    }
+    void  y(){
+    z();
+    }
+void z(){
+    Logger.d("s");
+}
 
     private float getFabTranslationYForSnackbar(CoordinatorLayout parent,
                                                 FloatingActionButton fab) {

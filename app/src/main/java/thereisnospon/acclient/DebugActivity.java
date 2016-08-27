@@ -20,9 +20,11 @@ import rx.functions.Action1;
 import thereisnospon.acclient.base.activity.DrawerActivity;
 import thereisnospon.acclient.event.Arg;
 import thereisnospon.acclient.event.Msg;
+import thereisnospon.acclient.modules.hello.HelloActivity;
 import thereisnospon.acclient.modules.login.LoginActivity;
 import thereisnospon.acclient.modules.login.LoginUtil;
 import thereisnospon.acclient.modules.problem_list.HdojActivity;
+import thereisnospon.acclient.modules.rank.RankActivity;
 import thereisnospon.acclient.modules.search_people.SearchPeopleActivity;
 import thereisnospon.acclient.modules.settings.SettingActivity;
 import thereisnospon.acclient.modules.settings.Settings;
@@ -42,7 +44,7 @@ public class DebugActivity extends DrawerActivity implements ListView.OnItemClic
     ArrayAdapter<String>adapter;
     String []debugs=new String[]{
             "Login","problem","search","submmit","Code","Setting"
-            ,"submmit anwser","user"
+            ,"submmit anwser","user","Rank","HELLO"
     };
 
     Handler handler;
@@ -79,6 +81,10 @@ public class DebugActivity extends DrawerActivity implements ListView.OnItemClic
                 intent.putExtra(Arg.LOAD_USER_DETAIL,"465101800");
                 startActivity(intent);
                 return ;
+            case 8:cl= RankActivity.class;
+                break;
+            case 9:cl= HelloActivity.class;
+                break;
             default:
                 break;
         }

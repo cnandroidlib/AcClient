@@ -2,6 +2,7 @@ package thereisnospon.acclient.modules.login;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
@@ -51,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
                     SpUtil.getInstance().putString(SpUtil.PASS,password);
                 }else{
                     SpUtil.getInstance().clear();
+
                 }
             }
             @Override
@@ -67,6 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                 Msg.t(msg);
             }
         });
+
     }
 
     Handler handler;
