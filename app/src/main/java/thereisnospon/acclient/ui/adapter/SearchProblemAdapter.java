@@ -40,7 +40,6 @@ public class SearchProblemAdapter extends NormalSwipeAdapter<SearchProblem> {
     public void bindNormalViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
         VH vh=(VH)viewHolder;
         final ProblemItem problem=getItem(position);
-        vh.title.getPaint().setFakeBoldText(true);
         vh.title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

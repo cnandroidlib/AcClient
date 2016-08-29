@@ -24,7 +24,6 @@ public abstract class IRequest {
     protected OkHttpClient client;
 
 
-
     public IRequest(){
         this(null,null);
     }

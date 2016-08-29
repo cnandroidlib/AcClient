@@ -2,34 +2,50 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="题目列表" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="搜索用户" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="排行榜" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="设置" />
-    </group>
 
-    <item android:title="Communicate">
+    <item
+        android:id="@+id/menu_problem"
+        android:icon="@drawable/ic_event_note_black_24dp"
+        android:title="题目列表" />
+
+    <item
+        android:id="@+id/menu_user"
+        android:icon="@drawable/ic_people_black_24dp"
+        android:title="用户列表" />
+
+    <item
+        android:id="@+id/menu_relogin"
+        android:icon="@drawable/ic_exit_to_app_black_24dp"
+        android:title="重新登陆" />
+
+    <item
+        android:id="@+id/menu_info"
+        android:icon="@drawable/ic_account_circle_black_24dp"
+        android:title="个人信息" />
+
+    <item
+        android:id="@+id/menu_contest"
+        android:icon="@drawable/ic_toys_black_24dp"
+        android:title="比赛列表" >
+    </item>
+
+</group>
+
+    <item android:title="其它">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
+                android:id="@+id/menu_share"
+                android:icon="@drawable/ic_share_black_24dp"
                 android:title="分享" />
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
+                android:id="@+id/menu_about"
+                android:icon="@drawable/ic_info_black_24dp"
                 android:title="关于" />
+            <item
+                android:id="@+id/menu_setting"
+                android:icon="@drawable/ic_settings_applications_black_24dp"
+                android:title="设置" />
+
         </menu>
     </item>
 

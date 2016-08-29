@@ -28,6 +28,17 @@ public class PostRequest extends IRequest {
         return this;
     }
 
+
+    public IRequest addEncoded(String key,String value){
+        if(isFisrtParamter){
+            parameter=new FormBody.Builder();
+            isFisrtParamter=false;
+        }
+        parameter.addEncoded(key,value);
+        return this;
+    }
+
+
     @Override
     protected Request buildRequest() {
         Request.Builder builder=new Request.Builder();

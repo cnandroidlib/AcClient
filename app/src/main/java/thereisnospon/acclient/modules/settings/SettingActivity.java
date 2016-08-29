@@ -12,6 +12,8 @@ import android.os.Bundle;
 
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
@@ -29,8 +31,9 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 import thereisnospon.acclient.R;
+import thereisnospon.acclient.base.activity.DrawerActivity;
 
-public class SettingActivity extends AppCompatActivity
+public class SettingActivity extends DrawerActivity
         implements SimpleSettingFragment.OnThemeChangeListener{
 
 
@@ -43,8 +46,10 @@ public class SettingActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         initTheme();
         setContentView(R.layout.activity_setting);
+        initDrawer();
         initView();
         addFragment();
+
     }
 
     void changeTheme(){
@@ -57,7 +62,9 @@ public class SettingActivity extends AppCompatActivity
     @Override
     public void onFragmentCreate(Toolbar toolbar) {
         setSupportActionBar(toolbar);
+        initDrawerWithToolBar(toolbar);
         startAnimation(settingimage);
+
     }
 
     void getState(){
@@ -90,7 +97,7 @@ public class SettingActivity extends AppCompatActivity
         settingimage.setAlpha(1f);
         settingimage.setVisibility(View.VISIBLE);
     }
-    void saveBitmap(Bitmap bitmap){
+    /*void saveBitmap(Bitmap bitmap){
         File file=getCacheDir();
         File x=new File(file,"233.png");
         try(FileOutputStream out=new FileOutputStream(x)){
@@ -102,7 +109,7 @@ public class SettingActivity extends AppCompatActivity
         }catch (IOException e){
             e.printStackTrace();
         }
-    }
+    }*/
 
     void startAnimation(final View view){
 
@@ -149,5 +156,18 @@ public class SettingActivity extends AppCompatActivity
     @Override
     public void onThemeChange() {
         changeTheme();
+    }
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_menu_nosearch, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+       return false;
     }
 }

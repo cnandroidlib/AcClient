@@ -2,27 +2,17 @@ package thereisnospon.acclient.modules.login;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.Toast;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import okhttp3.Headers;
-import rx.functions.Action1;
 import thereisnospon.acclient.R;
-import thereisnospon.acclient.event.Event;
-import thereisnospon.acclient.event.EventCode;
 import thereisnospon.acclient.event.Msg;
 import thereisnospon.acclient.utils.SpUtil;
-import thereisnospon.acclient.utils.net.callback.StringCallback;
 
 /**
  * A login screen that offers login via email/password.
@@ -76,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.tmp_activity_login);
         ButterKnife.bind(this);
         handler=new Handler();
 

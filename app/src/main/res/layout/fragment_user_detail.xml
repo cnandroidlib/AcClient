@@ -4,7 +4,6 @@
     android:background="#dcdce0"
     android:layout_alignParentTop="true"
     app:layout_behavior="@string/scroll_behavior"
-
     xmlns:card_view="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -19,7 +18,7 @@
         android:layout_gravity="center"
         style="@style/cardViewStyle"
         android:layout_margin="0dp"
-        app:cardBackgroundColor="@color/colorPrimary">
+        app:cardBackgroundColor="?attr/colorPrimary">
         <TextView
             android:gravity="center"
             android:maxLength="15"
@@ -229,10 +228,7 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
-
     </android.support.v7.widget.CardView>
-
-
 
 
 

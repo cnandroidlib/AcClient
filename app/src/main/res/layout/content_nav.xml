@@ -10,6 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="thereisnospon.acclient.NavActivity"
-    tools:showIn="@layout/app_bar_nav">
+    tools:showIn="@layout/nav_activity_problem_list">
 
 </RelativeLayout>

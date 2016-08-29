@@ -14,11 +14,16 @@ public abstract class SearchActivity extends FragmentActivity implements  Search
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         boolean ret=super.onCreateOptionsMenu(menu);
+        initSearch(menu);
+        return ret;
+    }
+
+    public void initSearch(Menu menu){
         final MenuItem searchItem=menu.findItem(R.id.ab_search);
         SearchView searchview=(SearchView)searchItem.getActionView();
         searchview.setOnQueryTextListener(this);
-        return ret;
     }
+
 
     @Override
     public boolean onQueryTextChange(String newText) {

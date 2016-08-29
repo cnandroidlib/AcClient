@@ -23,6 +23,7 @@ public class SpUtil {
 
     public static final String NAME="kname";
     public static final String PASS="kpass";
+    public static final String NICKNAME="nickname";
 
     public String getString(String key){
         return sp.getString(key,null);

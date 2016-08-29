@@ -8,6 +8,7 @@ import com.orhanobut.logger.Logger;
 import org.jsoup.helper.StringUtil;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ import thereisnospon.acclient.data.SearchProblem;
 import thereisnospon.acclient.utils.EncodeUtils;
 import thereisnospon.acclient.utils.net.HttpUtil;
 import thereisnospon.acclient.utils.net.request.IRequest;
+import thereisnospon.acclient.utils.net.request.PostRequest;
 
 /**
  * Created by yzr on 16/6/10.
@@ -91,12 +93,14 @@ public class SearchProblemModel implements SearchProblemContact.Model {
 
     String postPage(String query){
         try{
+            Logger.d(query);
             String urlQuery=URLEncoder.encode(query,"gb2312");
             Log.e("SSEARCH",urlQuery);
             IRequest request=HttpUtil.getInstance()
                     .post(HdojApi.SEARCH_PROBLEM_BYTITLE)
-                    .addParameter("content",query)
+                    .addHeader("Content-Type","application/x-www-form-urlencoded")
                     .addParameter("searchmode","title");
+            ((PostRequest)request).addEncoded("content",encode(query));
             Response response= request
                     .execute();
             String html=  new String(response.body().bytes(),"gb2312");
@@ -108,9 +112,9 @@ public class SearchProblemModel implements SearchProblemContact.Model {
     }
 
 
+
     String getPage(String query){
         try{
-            String urlQuery=URLEncoder.encode(query,"gb2312");
             IRequest request=HttpUtil.getInstance()
                     .get(HdojApi.PROBLEM_LIST+query);
             Response response= request
@@ -131,5 +135,18 @@ public class SearchProblemModel implements SearchProblemContact.Model {
         }else{
             return postPage(query);
         }
+    }
+
+    private String encode(String s){
+        try{
+            Logger.d(s+"-----");
+            String encoded= URLEncoder.encode(s,"gb2312");
+            Logger.d(encoded+"------");
+            return encoded;
+        }catch (UnsupportedEncodingException e){
+            e.printStackTrace();
+        }
+        return s;
+
     }
 }

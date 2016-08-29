@@ -16,6 +16,7 @@ public class UserDetailActivity extends FragmentActivity {
         setContentView(R.layout.activity_user_detail);
         String id=getIntent().getStringExtra(Arg.LOAD_USER_DETAIL);
         UserDetailFragment fragment=UserDetailFragment.newInstance(id);
+        initDrawer();
         changeFragment(fragment);
     }
 }

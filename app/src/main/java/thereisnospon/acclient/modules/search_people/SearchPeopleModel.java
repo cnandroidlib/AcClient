@@ -2,7 +2,11 @@ package thereisnospon.acclient.modules.search_people;
 
 import android.util.Log;
 
+import com.orhanobut.logger.Logger;
+
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,12 +74,14 @@ public class SearchPeopleModel implements SearchPeopleContact.Model {
         }
     }
 
+
     private String getHtml(String key){
         try{
             IRequest request= HttpUtil.getInstance()
                     .get(HdojApi.SEARCH_PEOPLE)
+                    .addHeader("Content-Type","application/x-www-form-urlencoded")
                     .addParameter("field","author")
-                    .addParameter("key",key);
+                    .addParameter("key",encode(key));
             Response response=request.execute();
             Log.d(TAG, "getHtml: key:"+key);
             String html=new String(response.body().bytes(),"gb2312");
@@ -87,7 +93,18 @@ public class SearchPeopleModel implements SearchPeopleContact.Model {
         return null;
     }
 
+    private String encode(String s){
+        try{
+            Logger.d(s+"-----");
+            String encoded= URLEncoder.encode(s,"gb2312");
+            Logger.d(encoded+"------");
+            return encoded;
+        }catch (UnsupportedEncodingException e){
+            e.printStackTrace();
+        }
+        return s;
 
+    }
 
 
 

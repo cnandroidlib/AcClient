@@ -19,6 +19,7 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.RingtonePreference;
 import android.preference.SwitchPreference;
+import android.support.design.widget.AppBarLayout;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -94,10 +95,12 @@ public  class SimpleSettingFragment extends PreferenceFragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view=super.onCreateView(inflater, container, savedInstanceState);
-        Toolbar toolbar=(Toolbar)inflater.inflate(R.layout.toolbar,null,false);
-        linearLayout=(LinearLayout)view;
-        linearLayout.addView(toolbar,0);
 
+
+        AppBarLayout appBarLayout=(AppBarLayout)inflater.inflate(R.layout.appbar,null,false);
+        Toolbar toolbar=(Toolbar)appBarLayout.findViewById(R.id.toolbar);
+        linearLayout=(LinearLayout)view;
+        linearLayout.addView(appBarLayout,0);
         themeChangeListener.onFragmentCreate(toolbar);
         return view;
     }

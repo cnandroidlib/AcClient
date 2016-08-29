@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.orhanobut.logger.Logger;
+
 import java.util.List;
 
 import thereisnospon.acclient.R;
@@ -35,13 +37,13 @@ public class SearchPeopleFragment extends BaseSwipeFragment<SearchPeopleItem>
         return fragment;
     }
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_search_people,container,false);
         initRefreshViews(view,R.id.search_people_swipe,R.id.search_people_recycle);
         presenter=new SearchPeoplePresenter(this);
+        Logger.d(key);
         return view;
     }
 
@@ -56,28 +58,32 @@ public class SearchPeopleFragment extends BaseSwipeFragment<SearchPeopleItem>
     }
 
     @Override
-    public void loadMore() {
+        public void loadMore() {
+        Logger.d("load more");
         presenter.loadMorePeople(key);
     }
 
     @Override
     public void refresh() {
+        Logger.d("refresh");
         presenter.searchPeople(key);
     }
 
     @Override
     public void refreshPeople(List<SearchPeopleItem> list) {
+        Logger.d("refresh people");
         onRefreshData(list);
     }
 
     @Override
     public void loadMorePeople(List<SearchPeopleItem> list) {
+        Logger.d("load more people");
         onMoreData(list);
     }
 
     @Override
     public void onFailure(String err) {
-        Log.d(TAG, "onFailure: "+err);
+        Logger.d("on failure"+err);
         enableLoadMore(false);
     }
 }

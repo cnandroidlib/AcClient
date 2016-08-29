@@ -31,41 +31,12 @@
 
 
 
-    <thereisnospon.acclient.widget.BottomsheetLayout
-        android:layout_alignParentBottom="true"
-        android:id="@+id/problem_bottomsheet"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:behavior_hideable="true"
-        android:background="@color/colorPrimary"
-        android:orientation="vertical"
-        app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
-
-        <NumberPicker
-            android:background="#ffffff"
-            android:id="@+id/problem_pager_np"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"></NumberPicker>
-
-        <Button
-            android:id="@+id/problem_pager_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </thereisnospon.acclient.widget.BottomsheetLayout>
 
 
 
     <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/problem_fab"
 
-        app:layout_behavior=".FabBehavior"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_dialog_email" />
 
 
 </android.support.design.widget.CoordinatorLayout>
