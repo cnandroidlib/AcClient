@@ -33,6 +33,9 @@ import thereisnospon.acclient.event.Event;
 import thereisnospon.acclient.event.Msg;
 import thereisnospon.acclient.modules.settings.Settings;
 import thereisnospon.acclient.modules.show_code.CodeActivity;
+import thereisnospon.acclient.modules.submmit_status.SubmmitQuery;
+import thereisnospon.acclient.modules.submmit_status.SubmmitStatusActivity;
+import thereisnospon.acclient.utils.SpUtil;
 import thereisnospon.acclient.utils.StringCall;
 
 public class SubmmitAnwserActivity extends BaseActivity implements View.OnClickListener {
@@ -71,6 +74,10 @@ public class SubmmitAnwserActivity extends BaseActivity implements View.OnClickL
     void submmitSuccess(String html){
         List<SubmmitStatus>list=SubmmitStatus.Builder.parse(html);
         Toast.makeText(this,"submmit success"+list.size(),Toast.LENGTH_SHORT).show();
+        Intent intent=new Intent(this, SubmmitStatusActivity.class);
+        intent.putExtra(Arg.SUBMMIT_QUERY_USER, SpUtil.getInstance().getString(SpUtil.NAME));
+        intent.putExtra(Arg.SUBMMIT_QUERY_STATUS, SubmmitQuery.Status.ALL.getValue());
+        startActivity(intent);
     }
 
     void $submmit(){

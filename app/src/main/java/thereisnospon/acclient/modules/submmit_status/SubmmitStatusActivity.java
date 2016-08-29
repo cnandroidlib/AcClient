@@ -3,6 +3,8 @@ package thereisnospon.acclient.modules.submmit_status;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import thereisnospon.acclient.R;
 import thereisnospon.acclient.base.activity.FragmentActivity;
@@ -27,8 +29,21 @@ public class SubmmitStatusActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submmit_status);
+        initDrawer();
         SubmmitQuery query=parseQuery();
         SubmmitFragment fragment=SubmmitFragment.newInstance(query);
         changeFragment(fragment);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_menu_nosearch, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return false;
+    }
+
 }

@@ -13,69 +13,38 @@
     <application
         android:name=".AppApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo_blue"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoActionBar">
-
-        <activity
-            android:name=".MainActivity" >
-        </activity>
-
+        <activity android:name=".MainActivity"></activity>
         <activity
             android:name=".modules.login.LoginActivity"
-            android:label="@string/title_activity_login" >
-        </activity>
-
+            android:label="@string/title_activity_login"></activity>
         <activity
             android:name=".modules.problem_list.HdojActivity"
-            android:label="题目列表" >
-        </activity>
-
-        <activity
-            android:name=".modules.problem_detail.ShowProblemActivity">
-        </activity>
-
-        <activity
-            android:name=".modules.search_people.SearchPeopleActivity" >
-        </activity>
-
-        <activity
-            android:name=".modules.user_detail.UserDetailActivity" >
-        </activity>
-
-        <activity
-            android:name=".modules.submmit_status.SubmmitStatusActivity" >
-        </activity>
-
-        <activity
-            android:name=".DebugActivity">
-        </activity>
-
-        <activity
-            android:name=".modules.show_code.CodeActivity" >
-        </activity>
-
+            android:label="题目列表"></activity>
+        <activity android:name=".modules.problem_detail.ShowProblemActivity"></activity>
+        <activity android:name=".modules.search_people.SearchPeopleActivity"></activity>
+        <activity android:name=".modules.user_detail.UserDetailActivity"></activity>
+        <activity android:name=".modules.submmit_status.SubmmitStatusActivity"></activity>
+        <activity android:name=".DebugActivity"></activity>
+        <activity android:name=".modules.show_code.CodeActivity"></activity>
         <activity
             android:name=".modules.settings.SettingActivity"
-            android:label="设置">
-        </activity>
-
-        <activity
-            android:name=".modules.submmit.SubmmitAnwserActivity" >
-        </activity>
-
+            android:label="设置"></activity>
+        <activity android:name=".modules.submmit.SubmmitAnwserActivity"></activity>
         <activity
             android:name=".modules.rank.RankActivity"
-            android:label="用户列表" >
-        </activity>
-
+            android:label="用户列表"></activity>
         <activity android:name=".modules.hello.HelloActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".modules.about.AboutActivity"></activity>
     </application>
+
 </manifest>

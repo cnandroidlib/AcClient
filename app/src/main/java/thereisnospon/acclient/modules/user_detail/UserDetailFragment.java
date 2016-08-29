@@ -1,5 +1,6 @@
 package thereisnospon.acclient.modules.user_detail;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,14 +10,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 import jp.wasabeef.recyclerview.animators.ScaleInAnimator;
 import thereisnospon.acclient.R;
+import thereisnospon.acclient.data.SubmmitStatus;
 import thereisnospon.acclient.data.UserInfo;
+import thereisnospon.acclient.event.Arg;
+import thereisnospon.acclient.modules.submmit_status.SubmmitQuery;
+import thereisnospon.acclient.modules.submmit_status.SubmmitStatusActivity;
 
 /**
  * Created by yzr on 16/6/18.
@@ -42,12 +49,21 @@ public class UserDetailFragment extends Fragment implements UserDetailContact.Vi
     TextView userAc;
     @BindView(R.id.usernode_recycle)RecyclerView recyclerView;
 
+    @BindView(R.id.linear_submission)LinearLayout linearSubmission;
+
     private UserDetailContact.Presenter presenter;
 
 
     @BindView(R.id.user_info_nickname)
     TextView nickName;
 
+
+    @OnClick(R.id.linear_submission)void cl(){
+        Intent intent=new Intent(getActivity(), SubmmitStatusActivity.class);
+        intent.putExtra(Arg.SUBMMIT_QUERY_USER,id);
+        intent.putExtra(Arg.SUBMMIT_QUERY_STATUS, SubmmitQuery.Status.ALL.getValue());
+        startActivity(intent);
+    }
 
     private String id;
 

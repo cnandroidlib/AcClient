@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-
 <FrameLayout
     android:layout_centerInParent="true"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -9,8 +8,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-
-
 
 <android.support.v7.widget.CardView
     android:layout_marginTop="20dp"
@@ -24,15 +21,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-            
-
         </LinearLayout>
+
 
         <LinearLayout
             android:orientation="horizontal"
@@ -40,6 +34,7 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/sb_status"
                 android:textSize="15sp"
                 android:padding="2dp"
                 android:gravity="center"
@@ -48,6 +43,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
+                android:id="@+id/sb_name"
                 android:textSize="15sp"
                 android:gravity="right"
                 android:text="JXNU_ACM_ACC"
@@ -63,24 +59,28 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/sb_usedt"
                 android:gravity="left"
                 android:text="0MS"
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
+                android:id="@+id/sb_memory"
                 android:gravity="left"
                 android:text="0K"
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
+                android:id="@+id/sb_length"
                 android:text="18290B"
                 android:gravity="left"
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
+                android:id="@+id/sb_language"
                 android:text="G++"
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
@@ -88,12 +88,30 @@
         </LinearLayout>
 
 
-        <TextView
-            android:layout_marginRight="5dp"
-            android:gravity="right"
-            android:text="2016-08-22 17:37:05"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/sb_pid"
+                android:layout_marginRight="5dp"
+                android:gravity="left"
+                android:text="1011"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/sb_date"
+                android:layout_marginRight="5dp"
+                android:gravity="right"
+                android:text="2016-08-22 17:37:05"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
 
 
     </LinearLayout>

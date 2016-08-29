@@ -184,7 +184,9 @@
         android:layout_gravity="center"
         style="@style/cardViewStyle"
         app:cardBackgroundColor="?attr/cardViewColor">
+
         <LinearLayout
+            android:id="@+id/linear_submission"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">

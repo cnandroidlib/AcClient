@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import thereisnospon.acclient.R;
 import thereisnospon.acclient.event.Arg;
+import thereisnospon.acclient.modules.about.AboutActivity;
 import thereisnospon.acclient.modules.hello.HelloActivity;
 import thereisnospon.acclient.modules.problem_list.HdojActivity;
 import thereisnospon.acclient.modules.rank.RankActivity;
@@ -126,8 +127,11 @@ public  abstract class DrawerActivity extends ThemeActivity
                 intent=new Intent(this, RankActivity.class);
                 break;
             case R.id.menu_share:
+                share();
                 break;
             case R.id.menu_about:
+                Intent intent1=new Intent(this, AboutActivity.class);
+                startActivity(intent1);
                 break;
             case R.id.menu_setting:
                 intent=new Intent(this, SettingActivity.class);
@@ -141,5 +145,18 @@ public  abstract class DrawerActivity extends ThemeActivity
         }
         return true;
     }
+
+
+
+    private void share(){
+        Intent intent=new Intent(Intent.ACTION_SEND);
+        intent.setType("image/*");
+        intent.putExtra(Intent.EXTRA_SUBJECT, "分享一个有用的APP");
+        intent.putExtra(Intent.EXTRA_TEXT, "我发现了一个可以在手机上刷题(HduOj)的app,大家快来看看吧!");
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(Intent.createChooser(intent, getTitle()));
+    }
+
+
 
 }

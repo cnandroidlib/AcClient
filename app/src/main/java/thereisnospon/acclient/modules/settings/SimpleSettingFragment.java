@@ -78,8 +78,9 @@ public  class SimpleSettingFragment extends PreferenceFragment
         exitConfirm=(SwitchPreference)findPreference(Settings.EXIT_CONFIRM);
         exitConfirm.setOnPreferenceChangeListener(this);
 
-        about=findPreference(Settings.ABOUT_PREF);
-        about.setOnPreferenceClickListener(this);
+        /*about=findPreference(Settings.ABOUT_PREF);
+        about.setOnPreferenceClickListener(this);*/
+
         skin=(CheckBoxPreference) findPreference(Settings.SKIN_PREF);
         skin.setOnPreferenceChangeListener(this);
 
@@ -115,9 +116,9 @@ public  class SimpleSettingFragment extends PreferenceFragment
            settings.exitConfirm=Boolean.valueOf(newValue.toString());
            settings.putBoolean(Settings.EXIT_CONFIRM,settings.exitConfirm);
        }else if(preference==skin){
-           settings.skinPref=Boolean.valueOf(newValue.toString());
+           /*settings.skinPref=Boolean.valueOf(newValue.toString());
            settings.putBoolean(Settings.SKIN_PREF,settings.skinPref);
-           themeChangeListener.onThemeChange();
+           themeChangeListener.onThemeChange();*/
        }else if(preference==compiler){
            settings.compiler=Integer.parseInt(newValue.toString());
            settings.putString(Settings.COMPILER,settings.compiler+"");

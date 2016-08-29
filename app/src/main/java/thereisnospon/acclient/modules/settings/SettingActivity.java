@@ -159,7 +159,6 @@ public class SettingActivity extends DrawerActivity
     }
 
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_menu_nosearch, menu);
