@@ -39,6 +39,17 @@
     <color name="codeEditText">#657b83</color>
 
 
+
+
+
+    <style name="cardStyle">
+        <item name="cardCornerRadius">5dp</item>
+        <item name="contentPadding">5dp</item>
+        <item name="cardBackgroundColor">#ffffff</item>
+        <item name="cardElevation">5dp</item>
+    </style>
+
+
     <style name="AppThemeNoActionBar" parent="AppTheme">
         <item name="android:windowNoTitle">true</item>
         <item name="windowActionBar">false</item>

@@ -19,4 +19,6 @@ public class Arg {
 
 
     public static final String RE_LOGIN="re_login";
+
+    public static final String PROBLEM_DISUCSS="pro_disucss";
 }

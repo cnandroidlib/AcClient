@@ -23,7 +23,6 @@ public class GetRequest extends IRequest {
             url+="&";
         }
         url+=key+"="+value;
-        //Logger.d("get url:   "+url);
         return this;
     }
 

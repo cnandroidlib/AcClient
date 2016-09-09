@@ -45,6 +45,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".modules.about.AboutActivity"></activity>
+        <activity android:name=".modules.discuss.DiscussActivity"></activity>
     </application>
 
 </manifest>

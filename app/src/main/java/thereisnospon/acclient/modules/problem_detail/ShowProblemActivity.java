@@ -1,5 +1,6 @@
 package thereisnospon.acclient.modules.problem_detail;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,7 @@ import thereisnospon.acclient.base.activity.DrawerActivity;
 import thereisnospon.acclient.event.Arg;
 import thereisnospon.acclient.event.Event;
 import thereisnospon.acclient.event.EventCode;
+import thereisnospon.acclient.modules.discuss.DiscussActivity;
 
 public class ShowProblemActivity extends DrawerActivity {
 
@@ -33,12 +35,17 @@ public class ShowProblemActivity extends DrawerActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.toolbar_menu_nosearch, menu);
+        getMenuInflater().inflate(R.menu.menu_problem_detail, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        return false;
+        if(item.getItemId()==R.id.problem_discuss){
+            Intent intent=new Intent(this, DiscussActivity.class);
+            intent.putExtra(Arg.PROBLEM_DISUCSS,id+"");
+            startActivity(intent);
+            return true;
+        }else return false;
     }
 }

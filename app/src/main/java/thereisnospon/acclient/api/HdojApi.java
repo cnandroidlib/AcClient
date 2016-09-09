@@ -5,6 +5,8 @@ package thereisnospon.acclient.api;
  */
 public class HdojApi {
 
+
+
     public static final String PROBLEM_LIST="http://acm.split.hdu.edu.cn/listproblem.php";
 
     public static final String SEARCH_PROBLEM_BYTITLE="http://acm.split.hdu.edu.cn/search.php?action=listproblem";
@@ -25,6 +27,9 @@ public class HdojApi {
     public static final String SUBMMIT="http://acm.split.hdu.edu.cn/submit.php?action=submit";
 
     public static final String RANK="http://acm.split.hdu.edu.cn/ranklist.php";
+
+    public static final String DISUCSS="http://acm.split.hdu.edu.cn/discuss/public/list.php";
+    public static final String DISUCSS_PROBLEM="http://acm.split.hdu.edu.cn/discuss/problem/list.php";
 
 
 }

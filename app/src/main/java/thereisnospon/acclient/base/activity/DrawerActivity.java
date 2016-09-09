@@ -17,6 +17,7 @@ import android.widget.TextView;
 import thereisnospon.acclient.R;
 import thereisnospon.acclient.event.Arg;
 import thereisnospon.acclient.modules.about.AboutActivity;
+import thereisnospon.acclient.modules.discuss.DiscussActivity;
 import thereisnospon.acclient.modules.hello.HelloActivity;
 import thereisnospon.acclient.modules.problem_list.HdojActivity;
 import thereisnospon.acclient.modules.rank.RankActivity;
@@ -110,7 +111,8 @@ public  abstract class DrawerActivity extends ThemeActivity
         switch (id)
         {
             case R.id.menu_contest:
-                Snackbar.make(drawer,"功能完善中...",Snackbar.LENGTH_SHORT).show();
+                intent=new Intent(this, DiscussActivity.class);
+                //Snackbar.make(drawer,"功能完善中...",Snackbar.LENGTH_SHORT).show();
                 break;
             case R.id.menu_info:
                 intent=new Intent(this, UserDetailActivity.class);
