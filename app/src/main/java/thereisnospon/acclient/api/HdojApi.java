@@ -32,4 +32,7 @@ public class HdojApi {
     public static final String DISUCSS_PROBLEM="http://acm.split.hdu.edu.cn/discuss/problem/list.php";
 
 
+    public static final String NOTE="http://acm.split.hdu.edu.cn/note/notelist.php";
+
+
 }

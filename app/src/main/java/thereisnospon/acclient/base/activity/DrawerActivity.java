@@ -19,6 +19,7 @@ import thereisnospon.acclient.event.Arg;
 import thereisnospon.acclient.modules.about.AboutActivity;
 import thereisnospon.acclient.modules.discuss.DiscussActivity;
 import thereisnospon.acclient.modules.hello.HelloActivity;
+import thereisnospon.acclient.modules.note.NoteActivity;
 import thereisnospon.acclient.modules.problem_list.HdojActivity;
 import thereisnospon.acclient.modules.rank.RankActivity;
 import thereisnospon.acclient.modules.rank.RankContact;
@@ -137,6 +138,9 @@ public  abstract class DrawerActivity extends ThemeActivity
                 break;
             case R.id.menu_setting:
                 intent=new Intent(this, SettingActivity.class);
+                break;
+            case R.id.menu_note:
+                intent=new Intent(this, NoteActivity.class);
                 break;
         }
 

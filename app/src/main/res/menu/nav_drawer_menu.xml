@@ -23,6 +23,11 @@
         android:icon="@drawable/ic_account_circle_black_24dp"
         android:title="个人信息" />
 
+        <item
+            android:id="@+id/menu_note"
+            android:icon="@drawable/ic_event_note_black_24dp"
+            android:title="笔记本" />
+
     <item
         android:id="@+id/menu_contest"
         android:icon="@drawable/ic_toys_black_24dp"
