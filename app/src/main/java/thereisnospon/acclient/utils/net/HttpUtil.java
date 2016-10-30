@@ -18,11 +18,18 @@ public class HttpUtil {
     private OkHttpClient client;
     private static HttpUtil instance;
 
+
+    private CookiesManager cookiesManager;
+
+
+
+
     private HttpUtil(){
 
+        cookiesManager=new CookiesManager(AppApplication.context);
 //        Log.d("NetActivityXXX","UTIL THRAD"+Thread.currentThread().getName());
         client=new OkHttpClient.Builder()
-                .cookieJar(new CookiesManager(AppApplication.context)).build();
+                .cookieJar(cookiesManager).build();
     }
 
     public static HttpUtil getInstance(){

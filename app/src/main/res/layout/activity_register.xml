@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_register"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context="thereisnospon.acclient.modules.login.RegisterActivity">
+
+
+    <LinearLayout
+        android:layout_centerInParent="true"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+
+            android:id="@+id/hello_logo"
+            android:layout_gravity="top|center"
+            android:src="@drawable/logo_white"
+            android:layout_width="150dp"
+            android:layout_height="150dp" />
+        <EditText
+            android:inputType="text"
+            android:id="@+id/register_id"
+            android:paddingRight="10dp"
+            android:textColorHint="#ffffff"
+            android:hint="username"
+            android:textColor="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:inputType="textEmailAddress"
+            android:id="@+id/register_email"
+            android:paddingRight="10dp"
+            android:textColorHint="#ffffff"
+            android:hint="email"
+            android:textColor="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/register_pass1"
+            android:inputType="textPassword"
+            android:paddingRight="10dp"
+            android:textColorHint="#ffffff"
+            android:hint="password"
+            android:textColor="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/register_pass2"
+            android:inputType="textPassword"
+            android:paddingRight="10dp"
+            android:textColorHint="#ffffff"
+            android:hint="check password"
+            android:textColor="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/check"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/check_code_text"
+                android:inputType="textPassword"
+                android:paddingRight="10dp"
+                android:textColorHint="#ffffff"
+                android:hint="check code"
+                android:layout_weight="1"
+                android:textColor="#ffffff"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/check_code_img"
+                android:layout_width="120dp"
+                android:layout_height="45dp" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/register_button"
+            android:textColor="#ffffff"
+            android:text="Register"
+            android:background="@color/colorPrimaryDark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+
+    </LinearLayout>
+
+
+
+
+
+</RelativeLayout>

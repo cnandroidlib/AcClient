@@ -3,20 +3,16 @@ package thereisnospon.acclient;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import okhttp3.Headers;
-import rx.functions.Action1;
 import thereisnospon.acclient.base.activity.DrawerActivity;
 import thereisnospon.acclient.event.Arg;
 import thereisnospon.acclient.event.Msg;
@@ -29,12 +25,10 @@ import thereisnospon.acclient.modules.search_people.SearchPeopleActivity;
 import thereisnospon.acclient.modules.settings.SettingActivity;
 import thereisnospon.acclient.modules.settings.Settings;
 import thereisnospon.acclient.modules.show_code.CodeActivity;
-import thereisnospon.acclient.modules.show_code.CodeFragment;
 import thereisnospon.acclient.modules.submmit.SubmmitAnwserActivity;
 import thereisnospon.acclient.modules.submmit_status.SubmmitStatusActivity;
 import thereisnospon.acclient.modules.user_detail.UserDetailActivity;
 import thereisnospon.acclient.utils.SpUtil;
-import thereisnospon.acclient.utils.net.callback.StringCallback;
 
 public class DebugActivity extends DrawerActivity implements ListView.OnItemClickListener{
 
@@ -119,7 +113,7 @@ public class DebugActivity extends DrawerActivity implements ListView.OnItemClic
             goToLogin();
             return;
         }
-        LoginUtil.login(userName, password, new LoginUtil.Call() {
+        LoginUtil.login(userName, password, new LoginUtil.LoginCall() {
             @Override
             public void success(String nickName) {
                 setTitle(nickName);

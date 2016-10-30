@@ -34,5 +34,10 @@ public class HdojApi {
 
     public static final String NOTE="http://acm.split.hdu.edu.cn/note/notelist.php";
 
+    public static final String REGISTER_URL="http://bestcoder.hdu.edu.cn/register.php?action=register&url=acm.hdu.edu.cn/userloginex.php?action=login";
+
+    public static final String CHECK_CODE="http://bestcoder.hdu.edu.cn/ck.php";
+
+
 
 }

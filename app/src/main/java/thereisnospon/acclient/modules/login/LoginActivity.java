@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.CheckBox;
 
+import com.orhanobut.logger.Logger;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -33,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onClick() {
         final String userName = loginUsername.getText().toString();
         final String password = logingPassword.getText().toString();
-        LoginUtil.login(userName, password, new LoginUtil.Call() {
+        LoginUtil.login(userName, password, new LoginUtil.LoginCall() {
             @Override
             public void success(String nickName) {
                 Msg.t("登陆成功");
@@ -69,6 +71,9 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.tmp_activity_login);
         ButterKnife.bind(this);
         handler=new Handler();
+
+
+
 
     }
 

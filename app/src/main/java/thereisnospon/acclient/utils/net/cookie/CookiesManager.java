@@ -8,6 +8,7 @@ import java.util.List;
 import okhttp3.Cookie;
 import okhttp3.CookieJar;
 import okhttp3.HttpUrl;
+import thereisnospon.acclient.utils.net.HttpUtil;
 
 /**
  * Created by yzr on 16/6/5.
@@ -34,6 +35,13 @@ public class CookiesManager implements CookieJar {
     public List<Cookie> loadForRequest(HttpUrl url) {
         List<Cookie> cookies = store.get(url);
         return cookies;
+    }
+
+
+    public void  clearCookie(HttpUrl url){
 
     }
+
+
+
 }
