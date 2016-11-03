@@ -10,6 +10,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.view.ContextMenu;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,6 +32,7 @@ import thereisnospon.acclient.event.Arg;
 import thereisnospon.acclient.event.Msg;
 import thereisnospon.acclient.modules.problem_detail.ShowProblemActivity;
 import thereisnospon.acclient.modules.problem_list.search_list.SearchProblemFragment;
+import thereisnospon.acclient.modules.settings.Settings;
 
 /**
  * Created by yzr on 16/6/5.
@@ -147,5 +149,31 @@ public class HdojActivity extends SearchActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+
+
+
+    private boolean first=true;
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if(keyCode==KeyEvent.KEYCODE_BACK){
+            if(first&&Settings.getInstance().ifExitConfirm()){
+                first=false;
+                Snackbar.make(getDrawer(),"再按一次返回键回到桌面",Snackbar.LENGTH_SHORT)
+                        .setAction("确认", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                            }
+                        })
+                        .show();
+                return true;
+            }
+
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

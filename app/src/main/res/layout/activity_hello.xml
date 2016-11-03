@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
 
-    tools:context="thereisnospon.acclient.modules.hello.HelloActivity">
+    tools:context="thereisnospon.acclient.modules.login.LoginActivity">
 
 
 

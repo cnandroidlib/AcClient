@@ -9,6 +9,7 @@ public class Arg {
 
     public static final String SUBMMIT_QUERY_USER="submmit_query_user";
     public static final String SUBMMIT_QUERY_STATUS="submmit_query_status";
+    public static final String SUBMMIT_QUERY_PID="submmit_query_pid";
 
 
     public static final String SHOWCODE_ID="showcode_id";

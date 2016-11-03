@@ -7,9 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorPrimary"
-    tools:context="thereisnospon.acclient.modules.hello.HelloActivity">
-
-
+    tools:context="thereisnospon.acclient.modules.login.LoginActivity">
 
 
 
@@ -27,7 +25,7 @@
         <ImageView
             android:id="@+id/hello_logo"
             android:layout_gravity="top|center"
-            android:src="@drawable/logo_white"
+            android:src="@mipmap/ic_launcher"
             android:layout_width="150dp"
             android:layout_height="150dp" />
 

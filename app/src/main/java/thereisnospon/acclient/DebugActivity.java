@@ -16,8 +16,8 @@ import java.util.List;
 import thereisnospon.acclient.base.activity.DrawerActivity;
 import thereisnospon.acclient.event.Arg;
 import thereisnospon.acclient.event.Msg;
-import thereisnospon.acclient.modules.hello.HelloActivity;
 import thereisnospon.acclient.modules.login.LoginActivity;
+
 import thereisnospon.acclient.modules.login.LoginUtil;
 import thereisnospon.acclient.modules.problem_list.HdojActivity;
 import thereisnospon.acclient.modules.rank.RankActivity;
@@ -56,8 +56,8 @@ public class DebugActivity extends DrawerActivity implements ListView.OnItemClic
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Class<?>cl=null;
         switch (position){
-            case 0:cl= LoginActivity.class;
-                break;
+//
+//                break;
             case 1:cl= HdojActivity.class;
                 break;
             case 2:cl= SearchPeopleActivity.class;
@@ -77,7 +77,7 @@ public class DebugActivity extends DrawerActivity implements ListView.OnItemClic
                 return ;
             case 8:cl= RankActivity.class;
                 break;
-            case 9:cl= HelloActivity.class;
+            case 9:cl= LoginActivity.class;
                 break;
             default:
                 break;
@@ -102,8 +102,8 @@ public class DebugActivity extends DrawerActivity implements ListView.OnItemClic
 
     void goToLogin(){
         Msg.t("请先登陆");
-        Intent intent=new Intent(this,LoginActivity.class);
-        startActivity(intent);
+//
+//        startActivity(intent);
     }
 
     void checkLogin(){

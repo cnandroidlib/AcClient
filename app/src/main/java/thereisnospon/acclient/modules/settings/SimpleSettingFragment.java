@@ -45,7 +45,7 @@ public  class SimpleSettingFragment extends PreferenceFragment
     ListPreference compiler;
     Preference about;
     SwitchPreference exitConfirm;
-    CheckBoxPreference skin;
+    //CheckBoxPreference skin;
     Settings settings;
 
 
@@ -81,8 +81,8 @@ public  class SimpleSettingFragment extends PreferenceFragment
         /*about=findPreference(Settings.ABOUT_PREF);
         about.setOnPreferenceClickListener(this);*/
 
-        skin=(CheckBoxPreference) findPreference(Settings.SKIN_PREF);
-        skin.setOnPreferenceChangeListener(this);
+       // skin=(CheckBoxPreference) findPreference(Settings.SKIN_PREF);
+       // skin.setOnPreferenceChangeListener(this);
 
 
         compiler=(ListPreference)findPreference(Settings.COMPILER);
@@ -115,11 +115,12 @@ public  class SimpleSettingFragment extends PreferenceFragment
         }else if(preference==exitConfirm){
            settings.exitConfirm=Boolean.valueOf(newValue.toString());
            settings.putBoolean(Settings.EXIT_CONFIRM,settings.exitConfirm);
-       }else if(preference==skin){
+       }//else if(preference==skin){
            /*settings.skinPref=Boolean.valueOf(newValue.toString());
            settings.putBoolean(Settings.SKIN_PREF,settings.skinPref);
            themeChangeListener.onThemeChange();*/
-       }else if(preference==compiler){
+      // }
+        else if(preference==compiler){
            settings.compiler=Integer.parseInt(newValue.toString());
            settings.putString(Settings.COMPILER,settings.compiler+"");
        }

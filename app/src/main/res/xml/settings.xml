@@ -11,10 +11,10 @@
             android:entryValues="@array/them_values">
         </ListPreference>
 
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="skins_pref"
-            android:title="夜间模式"></CheckBoxPreference>
+        <!--<CheckBoxPreference-->
+            <!--android:defaultValue="false"-->
+            <!--android:key="skins_pref"-->
+            <!--android:title="夜间模式"></CheckBoxPreference>-->
 
         <ListPreference
             android:key="compiler_pref"

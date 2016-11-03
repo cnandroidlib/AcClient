@@ -3,11 +3,9 @@ package thereisnospon.acclient.base.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,11 +16,9 @@ import thereisnospon.acclient.R;
 import thereisnospon.acclient.event.Arg;
 import thereisnospon.acclient.modules.about.AboutActivity;
 import thereisnospon.acclient.modules.discuss.DiscussActivity;
-import thereisnospon.acclient.modules.hello.HelloActivity;
-import thereisnospon.acclient.modules.note.NoteActivity;
+import thereisnospon.acclient.modules.login.LoginActivity;
 import thereisnospon.acclient.modules.problem_list.HdojActivity;
 import thereisnospon.acclient.modules.rank.RankActivity;
-import thereisnospon.acclient.modules.rank.RankContact;
 import thereisnospon.acclient.modules.settings.SettingActivity;
 import thereisnospon.acclient.modules.user_detail.UserDetailActivity;
 import thereisnospon.acclient.utils.SpUtil;
@@ -123,7 +119,7 @@ public  abstract class DrawerActivity extends ThemeActivity
                 intent=new Intent(this,HdojActivity.class);
                 break;
             case R.id.menu_relogin:
-                intent=new Intent(this, HelloActivity.class);
+                intent=new Intent(this, LoginActivity.class);
                 intent.putExtra(Arg.RE_LOGIN,true);
                 break;
             case R.id.menu_user:
@@ -139,9 +135,9 @@ public  abstract class DrawerActivity extends ThemeActivity
             case R.id.menu_setting:
                 intent=new Intent(this, SettingActivity.class);
                 break;
-            case R.id.menu_note:
+            /*case R.id.menu_note:
                 intent=new Intent(this, NoteActivity.class);
-                break;
+                break;*/
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -151,8 +147,6 @@ public  abstract class DrawerActivity extends ThemeActivity
         }
         return true;
     }
-
-
 
     private void share(){
         Intent intent=new Intent(Intent.ACTION_SEND);
@@ -164,5 +158,7 @@ public  abstract class DrawerActivity extends ThemeActivity
     }
 
 
-
+    public DrawerLayout getDrawer() {
+        return drawer;
+    }
 }

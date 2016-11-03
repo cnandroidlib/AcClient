@@ -1,6 +1,7 @@
 package thereisnospon.acclient.modules.submmit_status;
 
 import thereisnospon.acclient.data.SubmmitStatus;
+import thereisnospon.acclient.modules.login.LoginContact;
 
 /**
  * Created by yzr on 16/7/30.
@@ -15,6 +16,13 @@ public class SubmmitQuery {
         this.status=status;
     }
 
+
+    private String pid;
+
+    public void setPid(String pid) {
+        this.pid = pid;
+    }
+
     @Override
     public String toString() {
         return query();
@@ -26,6 +34,8 @@ public class SubmmitQuery {
             builder.append("&user="+user);
         if(status!=null)
             builder.append("&status="+status.value);
+        if(pid!=null)
+            builder.append("&pid="+pid);
         return builder.toString();
     }
 

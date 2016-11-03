@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.orhanobut.logger.Logger;
+
 import thereisnospon.acclient.R;
 import thereisnospon.acclient.base.activity.FragmentActivity;
 import thereisnospon.acclient.data.SubmmitStatus;
@@ -18,11 +20,20 @@ public class SubmmitStatusActivity extends FragmentActivity {
         Intent intent=getIntent();
         String user=intent.getStringExtra(Arg.SUBMMIT_QUERY_USER);
         String status=intent.getStringExtra(Arg.SUBMMIT_QUERY_STATUS);
-        SubmmitQuery.Status s= SubmmitQuery.Status.ALL;
-        if(SubmmitQuery.Status.AC.getValue().equals(status)){
-            s=SubmmitQuery.Status.AC;
+        String pid=intent.getStringExtra(Arg.SUBMMIT_QUERY_PID);
+
+        SubmmitQuery submmitQuery=new SubmmitQuery(user, SubmmitQuery.Status.ALL);
+        if(status==null){
+            submmitQuery=new SubmmitQuery(user,null);
+            Logger.e(submmitQuery.query()+"    query");
+        }else if(status.equals(SubmmitQuery.Status.AC)){
+            submmitQuery=new SubmmitQuery(user, SubmmitQuery.Status.AC);
         }
-        return new SubmmitQuery(user,s);
+
+        if(pid!=null){
+            submmitQuery.setPid(pid);
+        }
+        return submmitQuery;
     }
 
     @Override

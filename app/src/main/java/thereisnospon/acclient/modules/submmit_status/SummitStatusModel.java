@@ -52,6 +52,7 @@ public class SummitStatusModel implements SubmmitStatusContact.Model {
 
     private String getHtml(String query){
         IRequest request=buildRequest(query);
+        Logger.e(query);
         try{
             Response response=request.execute();
             String html=new String(response.body().bytes(),"gb2312");

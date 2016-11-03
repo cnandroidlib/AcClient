@@ -34,6 +34,14 @@ public class RegisterActivity extends AppCompatActivity  implements LoginContact
 
 
 
+
+    @OnClick(R.id.check_code_img)void  cimg(){
+
+
+
+        presenter.loadCheckCode();
+    }
+
     private LoginContact.Presenter presenter;
 
     @Override
@@ -60,6 +68,7 @@ public class RegisterActivity extends AppCompatActivity  implements LoginContact
         }
         presenter.register(id,email,pass,passch,check);
     }
+
 
 
     @Override
