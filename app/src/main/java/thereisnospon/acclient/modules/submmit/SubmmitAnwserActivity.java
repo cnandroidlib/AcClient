@@ -114,7 +114,7 @@ public class SubmmitAnwserActivity extends BaseActivity implements View.OnClickL
         findView();
         setSupportActionBar(toolbar);
         initBottmsheet();
-        submmitcode.setText(SubmmitUtil.CODE );
+        //submmitcode.setText(SubmmitUtil.CODE );
         initSpinner();
         setTitle(problemId);
     }
