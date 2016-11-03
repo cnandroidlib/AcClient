@@ -98,7 +98,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContact.Vie
                public void onClick(View v) {
                    LoginActivity.this.id =loginId.getText().toString();
                    LoginActivity.this.pass=loginPass.getText().toString();
-                   Toast.makeText(LoginActivity.this,id+pass+"",Toast.LENGTH_SHORT).show();
+                  // Toast.makeText(LoginActivity.this,id+pass+"",Toast.LENGTH_SHORT).show();
                    presenter.login(id,pass);
                }
            });

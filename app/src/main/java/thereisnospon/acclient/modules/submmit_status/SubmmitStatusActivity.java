@@ -25,8 +25,7 @@ public class SubmmitStatusActivity extends FragmentActivity {
         SubmmitQuery submmitQuery=new SubmmitQuery(user, SubmmitQuery.Status.ALL);
         if(status==null){
             submmitQuery=new SubmmitQuery(user,null);
-            Logger.e(submmitQuery.query()+"    query");
-        }else if(status.equals(SubmmitQuery.Status.AC)){
+        }else if(status.equals(SubmmitQuery.Status.AC.getValue())){
             submmitQuery=new SubmmitQuery(user, SubmmitQuery.Status.AC);
         }
 
