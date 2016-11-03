@@ -22,7 +22,7 @@ public class CodeActivity extends FragmentActivity {
         if(code!=null){
             fragment=CodeFragment.newCodeInstance(code);
         }else if(id !=null){
-            fragment=CodeFragment.newCodeInstance(id);
+            fragment=CodeFragment.newInstance(id);
         }else{
             fragment=CodeFragment.newInstance("17562992");
         }

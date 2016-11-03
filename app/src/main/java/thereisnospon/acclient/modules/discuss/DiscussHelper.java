@@ -22,12 +22,10 @@ import thereisnospon.acclient.utils.net.HttpUtil;
 
 public class DiscussHelper {
 
-
     public interface  DiscussCall{
         void onSuccess(String code);
         void onFailure(String err);
     }
-
 
     public static void toDiscuss(final String url, final DiscussCall call){
         Observable.just(url)
@@ -52,10 +50,6 @@ public class DiscussHelper {
                 });
     }
 
-    private static void goToCode(Context context,String code){
-
-    }
-
 
     private static String parseCode(String html){
         if(html==null)
@@ -69,7 +63,6 @@ public class DiscussHelper {
             return dispostcontent.text();
         return "";
     }
-
 
     private static String getHtml(String url){
        try{
