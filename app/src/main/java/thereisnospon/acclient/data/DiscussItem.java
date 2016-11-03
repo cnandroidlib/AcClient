@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import thereisnospon.acclient.api.HdojApi;
+
 /**
  * Created by yzr on 16/9/8.
  */
@@ -77,7 +79,7 @@ public class DiscussItem{
     }
 
     public String getDiscussUrl() {
-        return discussUrl;
+        return HdojApi.DISCUSS_PRE+discussUrl;
     }
 
     public void setDiscussUrl(String discussUrl) {

@@ -39,5 +39,8 @@ public class HdojApi {
     public static final String CHECK_CODE="http://bestcoder.hdu.edu.cn/ck.php";
 
 
+    public static final String DISCUSS_PRE="http://acm.split.hdu.edu.cn/discuss/problem/";
+
+
 
 }
