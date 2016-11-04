@@ -209,7 +209,7 @@ public class SubmmitAnwserActivity extends BaseActivity implements View.OnClickL
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_submmit_code:
-                Msg.t("menu");
+                //Msg.t("menu");
                 break;
         }
         return super.onOptionsItemSelected(item);

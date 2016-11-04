@@ -154,7 +154,7 @@ public  abstract class DrawerActivity extends ThemeActivity
         intent.putExtra(Intent.EXTRA_SUBJECT, "分享一个有用的APP");
         intent.putExtra(Intent.EXTRA_TEXT, "我发现了一个可以在手机上刷题(HduOj)的app,大家快来看看吧!");
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(Intent.createChooser(intent, getTitle()));
+        startActivity(Intent.createChooser(intent, "分享"));
     }
 
 
